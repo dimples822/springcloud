@@ -9,15 +9,12 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.springcloud</groupId>
-	<artifactId>eureka</artifactId>
+	<groupId>com.springcloud.eureka</groupId>
+	<artifactId>eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eureka</name>
+	<name>eureka-server</name>
 	<description>eureka注册中心</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
 
 	<dependencies>
 		

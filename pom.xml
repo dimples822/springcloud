@@ -9,16 +9,23 @@
 		<version>2.1.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+
+	<modules>
+		<module>eureka-service</module>
+		<module>eureka-client</module>
+	</modules>
+
 	<groupId>com.dimples</groupId>
 	<artifactId>springcloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>spring cloud</name>
 	<packaging>pom</packaging>
 	<description>SpringCloud搭建测试</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+		<spring-cloud.version>Finchley.M8</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -59,6 +66,17 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<!--这里必须添加，否则各种依赖有问题-->
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
