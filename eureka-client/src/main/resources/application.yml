@@ -1,0 +1,12 @@
+server:
+  port: 7000        # 会员实现服务的端口号
+spring:
+  application:
+    name: eureka-client-test       # 服务名称
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9000/eureka       # 服务注册到Eureka注册中心地址
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}     # 显示实时IP和端口号注册
