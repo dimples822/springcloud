@@ -14,6 +14,11 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
     register-with-eureka: false
     fetch-registry: false
+# 开发时启动自我保护，保证服务不可用时及时剔除
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 3000
+
 
 
 

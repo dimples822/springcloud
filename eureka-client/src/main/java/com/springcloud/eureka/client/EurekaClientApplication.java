@@ -19,7 +19,7 @@ public class EurekaClientApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EurekaClientApplication.class, args);
-        log.info("*****************Eureka Client 程序已启动******************");
+        log.info("*****************Eureka Client 程序已启动 ******************");
     }
 
 }
