@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestController {
 
-    @GetMapping("/zuul/{name}")
+    @GetMapping("/client/{name}")
     public Map<String, Object> testZuul(@PathVariable String name) {
         Map<String, Object> map = new HashMap<>(1);
         map.put("name", name);

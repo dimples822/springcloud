@@ -17,9 +17,12 @@ public class ResultVO extends HashMap<String, Object> implements Serializable {
 
     private static final long serialVersionUID = 3086724473347652113L;
 
+    private static final String CODE = "code";
+    private static final String MSG = "msg";
+
     public ResultVO() {
-        put("code", 0);
-        put("msg", "success");
+        put(CODE, 0);
+        put(MSG, "success");
     }
 
     public static ResultVO error() {
@@ -32,14 +35,14 @@ public class ResultVO extends HashMap<String, Object> implements Serializable {
 
     public static ResultVO error(int code, String msg) {
         ResultVO r = new ResultVO();
-        r.put("code", code);
-        r.put("msg", msg);
+        r.put(CODE, code);
+        r.put(MSG, msg);
         return r;
     }
 
     public static ResultVO success(String msg) {
         ResultVO r = new ResultVO();
-        r.put("msg", msg);
+        r.put(MSG, msg);
         return r;
     }
 

@@ -10,8 +10,8 @@ server:
 spring:
   application:
     name: service-zuul
-#zuul:
-#  routes:
-#    client-a:
-#      path: /api-a/**
-#      serviceId: eureka-client
+zuul:
+  routes:
+    client-a:
+      path: /api-a/**
+      serviceId: eureka-client

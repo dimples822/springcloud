@@ -8,12 +8,15 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 认证过滤器
  *
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/8/14
  */
+@Slf4j
 @Component
 public class AuthenticationFilter extends ZuulFilter {
 
@@ -71,6 +74,7 @@ public class AuthenticationFilter extends ZuulFilter {
             currentContext.setSendZuulResponse(false);
             currentContext.setResponseBody("userToken is null");
             currentContext.setResponseStatusCode(401);
+            log.error("userToken is null");
             return null;
         }
         //正常调用其他服务接口
