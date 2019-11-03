@@ -11,7 +11,7 @@
 	</parent>
 
 	<modules>
-		<module>eureka-service</module>
+		<module>eureka-server</module>
 		<module>eureka-client</module>
 		<module>zuul-gateway</module>
 		<module>cloud-common</module>
