@@ -1,7 +1,5 @@
 package com.springcloud.eureka.client.controller;
 
-import com.sprig.cloud.common.vo.ResultVO;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +23,6 @@ public class TestController {
     public Map<String, Object> testZuul(@PathVariable String name) {
         Map<String, Object> map = new HashMap<>(1);
         map.put("name", name);
-        return ResultVO.success(map);
+        return map;
     }
 }
