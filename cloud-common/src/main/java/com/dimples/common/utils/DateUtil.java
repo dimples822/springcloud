@@ -1,4 +1,7 @@
-package com.sprig.cloud.common.utils;
+package com.dimples.common.utils;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +29,7 @@ public class DateUtil {
     private static final String YYYYMMDD = "yyyyMMdd";
     private static final String YYYY_MM_DD = "yyyy-MM-dd";
     private static final String YYYYMMDD_HHMMSS = "yyyy-MM-dd-hh.mm.ss";
+    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     private final static int ERA = 0;
     private final static int YEAR = 1;
@@ -62,6 +66,38 @@ public class DateUtil {
      */
     public static Date getCurrentDate() {
         return new Date();
+    }
+
+    /**
+     * 当前时间，格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @return 当前时间的标准形式字符串
+     */
+    public static String now() {
+        return getTime();
+    }
+
+    public static String getTime() {
+        return formatDate(new Date(), YYYY_MM_DD_HH_MM_SS);
+    }
+
+    /**
+     * 获取YYYY-MM-DD格式
+     *
+     * @return String
+     */
+    public static String getDay(Date date) {
+        return formatDate(date, YYYY_MM_DD);
+    }
+
+    public static String formatDate(Date date, String pattern) {
+        String formatDate = null;
+        if (StringUtils.isNotBlank(pattern)) {
+            formatDate = DateFormatUtils.format(date, pattern);
+        } else {
+            formatDate = DateFormatUtils.format(date, YYYY_MM_DD);
+        }
+        return formatDate;
     }
 
     /**
