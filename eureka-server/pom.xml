@@ -14,23 +14,43 @@
 	<name>eureka-server</name>
 	<description>eureka注册中心</description>
 
+	<properties>
+		<docker.image.prefix>dimples</docker.image.prefix>
+		<build.final.name>dimples-eureka-server</build.final.name>
+	</properties>
 
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
-		<finalName>eureka-server</finalName>
+		<finalName>${build.final.name}-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin><plugin>
+			<groupId>com.spotify</groupId>
+			<artifactId>docker-maven-plugin</artifactId>
+			<version>0.4.11</version>
+			<configuration>
+				<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+				<imageTags>dimples</imageTags>
+				<!-- 指定Dockerfile文件位置 -->
+				<dockerDirectory>${project.basedir}</dockerDirectory>
+				<resources>
+					<resource>
+						<targetPath>/</targetPath>
+						<directory>${project.build.directory}</directory>
+						<include>${build.final.name}-${version}.jar</include>
+					</resource>
+				</resources>
+			</configuration>
+		</plugin>
+
 		</plugins>
 	</build>
 
