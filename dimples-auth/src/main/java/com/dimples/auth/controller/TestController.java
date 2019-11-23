@@ -1,4 +1,4 @@
-package com.springcloud.eureka.client.controller;
+package com.dimples.auth.controller;
 
 import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.OpsLogTypeEnum;

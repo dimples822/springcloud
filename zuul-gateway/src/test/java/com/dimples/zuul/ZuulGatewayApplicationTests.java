@@ -1,4 +1,4 @@
-package com.springcloud.zuul;
+package com.dimples.zuul;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.springcloud.eureka.client;
+package com.dimples.auth;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

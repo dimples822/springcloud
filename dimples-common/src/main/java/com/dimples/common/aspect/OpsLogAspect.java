@@ -71,7 +71,7 @@ public class OpsLogAspect extends BaseAspectSupport {
         HttpServletRequest request = HttpContextUtil.getRequest();
         // 构建一些基础信息
         String content = buildContent(point, methodName, request);
-        log.info("执行的操作：{}, 类型：{}, 信息: {}", value, opsLogTypeName, content);
+        log.info("执行的操作:{}, 类型:{}, 信息:{}", value, opsLogTypeName, content);
     }
 
     /**
@@ -90,11 +90,12 @@ public class OpsLogAspect extends BaseAspectSupport {
             Enumeration<String> paraNames = request.getParameterNames();
             while (paraNames.hasMoreElements()) {
                 String key = paraNames.nextElement();
-                bf.append(key).append("=");
-                bf.append(request.getParameter(key)).append("&");
+                bf.append(key).append("=").append(request.getParameter(key)).append("&");
             }
             if (bf.toString().isEmpty()) {
                 bf.append(request.getQueryString());
+            } else {
+                bf.substring(0, bf.length() - 1);
             }
         }
         return String.format(LOG_CONTENT, className, methodName, bf.toString(), HttpContextUtil.getIp());
