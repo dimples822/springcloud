@@ -95,7 +95,7 @@ public class OpsLogAspect extends BaseAspectSupport {
             if (bf.toString().isEmpty()) {
                 bf.append(request.getQueryString());
             } else {
-                bf.substring(0, bf.length() - 1);
+                bf.deleteCharAt(bf.length() - 1);
             }
         }
         return String.format(LOG_CONTENT, className, methodName, bf.toString(), HttpContextUtil.getIp());
