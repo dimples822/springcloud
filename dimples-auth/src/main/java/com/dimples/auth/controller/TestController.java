@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
 
     @OpsLog(value = "多模块引用测试", type = OpsLogTypeEnum.TEST)
-    @GetMapping("/client/{name}")
+    @GetMapping("/{name}")
     public Map<String, Object> testZuul(@PathVariable String name) {
         Map<String, Object> map = new HashMap<>(1);
         map.put("name", name);
