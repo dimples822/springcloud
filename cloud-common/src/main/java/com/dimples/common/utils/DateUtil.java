@@ -55,10 +55,6 @@ public class DateUtil {
     private static final String THREE = "3";
     private static final String FOUR = "4";
 
-    public static void main(String[] args) {
-        System.out.println(new Date());
-    }
-
     /**
      * 得到当前时间
      *

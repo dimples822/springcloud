@@ -15,7 +15,7 @@
 		<module>eureka-client</module>
 		<module>zuul-gateway</module>
 		<module>cloud-common</module>
-		<module>nacos-client</module>
+		<module>dimples-nacos</module>
 	</modules>
 
 	<groupId>com.dimples</groupId>

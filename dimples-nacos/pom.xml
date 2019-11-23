@@ -12,7 +12,7 @@
 	<groupId>com.dimples.nacos</groupId>
 	<artifactId>dimoples-nacos</artifactId>
 	<version>${golbal.version}</version>
-	<name>dimoples-nacos</name>
+	<name>dimples-nacos</name>
 	<description>Nacos注册中心测试</description>
 
 

@@ -53,6 +53,11 @@
 			<version>${spring.web.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<!--aop模块-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
