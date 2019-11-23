@@ -12,6 +12,7 @@
 
 	<groupId>com.dimples.common</groupId>
 	<artifactId>dimples-common</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -58,7 +59,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}:${project.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 	</build>
 
 </project>
