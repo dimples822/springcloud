@@ -2,15 +2,9 @@ server:
   port: 7000        # 会员实现服务的端口号
 spring:
   application:
-    name: eureka-client      # 服务名称
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka       # 服务注册到Eureka注册中心地址
-    registry-fetch-interval-seconds: 10     # 表示eureka client间隔多久去拉取服务注册信息
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}     # 显示实时IP和端口号注册
-    health-check-url: /actuator/health
-    lease-renewal-interval-in-seconds: 10   # 表示eureka client发送心跳给server端的频率
+    name: dimples-auth      # 服务名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 139.9.220.1555:8848
 
