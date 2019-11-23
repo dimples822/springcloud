@@ -7,28 +7,28 @@
 		<groupId>com.dimples</groupId>
 		<artifactId>dimples-cloud</artifactId>
 		<version>1.0.0</version>
+		<relativePath>../../dimples-cloud/pom.xml</relativePath>
 	</parent>
-	<groupId>com.springcloud.eureka</groupId>
-	<artifactId>eureka-client</artifactId>
-	<version>1.0.0</version>
-	<name>eureka-client</name>
-	<description>eureka客户端</description>
+	<groupId>com.dimples.auth</groupId>
+	<artifactId>dimples-auth</artifactId>
 
 	<dependencies>
+		<!-- 公共模块 -->
 		<dependency>
-			<groupId>com.springcloud</groupId>
-			<artifactId>cloud-common</artifactId>
+			<groupId>com.dimples.common</groupId>
+			<artifactId>dimples-common</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!-- start-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- nacos -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>

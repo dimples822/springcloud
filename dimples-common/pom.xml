@@ -7,15 +7,12 @@
 		<groupId>com.dimples</groupId>
 		<artifactId>dimples-cloud</artifactId>
 		<version>1.0.0</version>
+		<relativePath>../../dimples-cloud/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.springcloud</groupId>
-	<artifactId>cloud-common</artifactId>
-	<version>1.0.0</version>
-
-	<name>cloud-common</name>
+	<groupId>com.dimples.common</groupId>
+	<artifactId>dimples-common</artifactId>
 	<packaging>jar</packaging>
-	<description>SpringCloud公共模块</description>
 
 	<properties>
 		<jackson.core.version>2.9.0</jackson.core.version>

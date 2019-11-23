@@ -2,7 +2,7 @@ package com.springcloud.eureka.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,13 +13,13 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019/8/13
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 @Slf4j
-public class EurekaClientApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaClientApplication.class, args);
-        log.info("*****************Eureka Client 程序已启动 ******************");
+        SpringApplication.run(Application.class, args);
+        log.info("***************** 程序已启动 ******************");
     }
 
 }

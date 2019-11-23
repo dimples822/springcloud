@@ -3,6 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<!-- 全局变量 -->
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+		<spring-cloud-alibaba.version>0.2.2.RELEASE</spring-cloud-alibaba.version>
+		<dimples.project.version>1.0.0</dimples.project.version>
+	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -11,26 +19,17 @@
 	</parent>
 
 	<modules>
-		<module>eureka-server</module>
-		<module>eureka-client</module>
-		<module>zuul-gateway</module>
-		<module>cloud-common</module>
-		<module>dimples-nacos</module>
+		<module>./dimples-auth</module>
+		<module>./zuul-gateway</module>
+		<module>./dimples-common</module>
+		<module>./dimples-nacos</module>
 	</modules>
 
 	<groupId>com.dimples</groupId>
 	<artifactId>dimples-cloud</artifactId>
-	<version>${golbal.version}</version>
+	<version>1.0.0</version>
 
-	<name>spring cloud</name>
 	<packaging>pom</packaging>
-	<description>SpringCloud搭建测试</description>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-		<golbal.version>1.0.0</golbal.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -66,7 +65,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
-				<version>0.2.2.RELEASE</version>
+				<version>${spring-cloud-alibaba.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
