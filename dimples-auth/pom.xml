@@ -14,6 +14,7 @@
 
 	<properties>
 		<docker.image.prefix>dimples</docker.image.prefix>
+		<docker.image.tag>dimples</docker.image.tag>
 		<build.final.name>dimples-auth</build.final.name>
 	</properties>
 
@@ -48,7 +49,7 @@
 				<version>0.4.11</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<imageTags>dimples</imageTags>
+					<imageTags>${docker.image.tag}</imageTags>
 					<!-- 指定Dockerfile文件位置 -->
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<resources>
