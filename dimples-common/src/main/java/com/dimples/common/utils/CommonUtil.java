@@ -293,15 +293,6 @@ public class CommonUtil {
     }
 
     /**
-     * 当前时间
-     *
-     * @return String
-     */
-    public static String currentTime() {
-        return DateUtil.now();
-    }
-
-    /**
      * 驼峰转下划线
      *
      * @param param String

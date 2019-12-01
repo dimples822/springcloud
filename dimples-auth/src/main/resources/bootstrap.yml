@@ -10,7 +10,6 @@ spring:
       config:
         file-extension: yaml
         group: DEFAULT_GROUP
-        namespace: Public
         prefix: dimples-auth
         server-addr: 139.9.220.155:8848
       discovery:
