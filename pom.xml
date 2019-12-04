@@ -22,6 +22,7 @@
 		<module>./dimples-auth</module>
 		<module>./zuul-gateway</module>
 		<module>./dimples-common</module>
+		<module>./dimples-monitor-admin</module>
 	</modules>
 
 	<groupId>com.dimples</groupId>
