@@ -18,7 +18,7 @@ spring:
       client:
         instance:
           prefer-ip: true
-        url: http://127.0.0.1:7070
+        url: http://139.9.220.155:7070/
 
 management:
   endpoint:
@@ -27,4 +27,4 @@ management:
   endpoints:
     web:
       exposure:
-        exclude: "*"
+        include: "*"
