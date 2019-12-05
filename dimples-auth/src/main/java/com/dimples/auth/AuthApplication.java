@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 @EnableDiscoveryClient
 @Slf4j
-public class Application {
+public class AuthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(AuthApplication.class, args);
         log.info("***************** 程序已启动 ******************");
     }
 
