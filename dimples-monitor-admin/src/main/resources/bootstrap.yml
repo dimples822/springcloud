@@ -1,9 +1,0 @@
-server:
-  port: 7070
-spring:
-  application:
-    name: Dimples-Monitor_Admin
-  boot:
-    admin:
-      ui:
-        title: ${spring.application.name}
