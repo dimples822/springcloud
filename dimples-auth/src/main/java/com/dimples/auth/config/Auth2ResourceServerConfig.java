@@ -22,7 +22,7 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable().requestMatchers().antMatchers("/**")
         .and()
          //添加资源控制
-        .authorizeRequests().antMatchers("/actuator/**").permitAll().antMatchers("/**").authenticated()
+        .authorizeRequests().antMatchers("/actuator/**","/test/**").permitAll().antMatchers("/**").authenticated()
         .and()
         .httpBasic()
         .and()

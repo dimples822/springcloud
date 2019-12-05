@@ -1,0 +1,30 @@
+server:
+  port: 7000
+spring:
+  cloud:
+    nacos:
+      config:
+        group: DEFAULT_GROUP
+        prefix: dimples-auth
+        file-extension: properties
+        server-addr: 139.9.220.155:8848
+      discovery.server-addr: 139.9.220.155:8848
+  application:
+    name: dimples-auth
+  profiles:
+    active: dev
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://127.0.0.1:7070
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
