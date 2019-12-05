@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpContextUtil {
 
     private static final String UNKNOWN = "unknown";
-
     private static final String LOOPBACK_ADDRESS = "127.0.0.1";
     private static final String LOCAL_ADDRESS = "0:0:0:0:0:0:0:1";
 
@@ -60,22 +59,35 @@ public class HttpContextUtil {
             }
             if (CommonUtil.isEmpty(ip) || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getRemoteAddr();
-                if (LOOPBACK_ADDRESS.equals(ip)) {
-                    InetAddress inet = null;
-                    try {
-                        inet = InetAddress.getLocalHost();
-                    } catch (UnknownHostException e) {
-                        e.printStackTrace();
-                    }
-                    if (inet != null) {
-                        ip = inet.getHostAddress();
-                    }
-                }
             }
         } catch (Exception e) {
             log.error("IPUtils ERROR:", e);
         }
         return ip;
+    }
+
+    /**
+     * 获取 HttpServletRequest
+     */
+    public static HttpServletRequest getRequest() {
+        HttpServletRequest request = null;
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (requestAttributes != null) {
+            request = requestAttributes.getRequest();
+        }
+        return request;
+    }
+
+    /**
+     * 获取 HttpServletResponse
+     */
+    public static HttpServletResponse getResponse() {
+        HttpServletResponse response = null;
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (requestAttributes != null) {
+            response = requestAttributes.getResponse();
+        }
+        return response;
     }
 
     /**
@@ -136,30 +148,6 @@ public class HttpContextUtil {
             }
             return macAddress;
         }
-    }
-
-    /**
-     * 获取 HttpServletRequest
-     */
-    public static HttpServletRequest getRequest() {
-        HttpServletRequest request = null;
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (requestAttributes != null) {
-            request = requestAttributes.getRequest();
-        }
-        return request;
-    }
-
-    /**
-     * 获取 HttpServletResponse
-     */
-    public static HttpServletResponse getResponse() {
-        HttpServletResponse response = null;
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (requestAttributes != null) {
-            response = requestAttributes.getResponse();
-        }
-        return response;
     }
 
     /**

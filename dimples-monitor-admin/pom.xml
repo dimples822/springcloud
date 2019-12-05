@@ -2,57 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dimples</groupId>
 		<artifactId>dimples-cloud</artifactId>
+		<groupId>com.dimples</groupId>
 		<version>1.0.0</version>
 		<relativePath>../../dimples-cloud/pom.xml</relativePath>
 	</parent>
-	<groupId>com.dimples.auth</groupId>
-	<artifactId>dimples-auth</artifactId>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.dimples.monitor.dmin</groupId>
+	<artifactId>dimples-monitor-admin</artifactId>
 
 	<properties>
 		<docker.image.prefix>dimples</docker.image.prefix>
-		<build.final.name>dimples-auth</build.final.name>
+		<build.final.name>dimples-monitor-admin</build.final.name>
 	</properties>
 
 	<dependencies>
-		<!-- 公共模块 -->
-		<dependency>
-			<groupId>com.dimples.common</groupId>
-			<artifactId>dimples-common</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- start-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- nacos 服务注册 -->
+
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server</artifactId>
+			<version>2.1.0</version>
 		</dependency>
-		<!-- nacos配置中心 -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-		</dependency>
-		<!-- 监控中心 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- spring security -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-security</artifactId>
-		</dependency>
-		<!-- OAuth -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -84,3 +64,19 @@
 	</build>
 
 </project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
