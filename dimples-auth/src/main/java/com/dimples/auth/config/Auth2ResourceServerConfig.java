@@ -1,9 +1,15 @@
 package com.dimples.auth.config;
 
+import com.dimples.auth.handler.AuthAccessDeniedHandler;
+import com.dimples.auth.handler.AuthExceptionEntryPoint;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+
+import javax.annotation.Resource;
 
 /**
  * 资源服务器
@@ -16,18 +22,26 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    @Resource
+    private AuthExceptionEntryPoint exceptionEntryPoint;
+    @Resource
+    private AuthAccessDeniedHandler accessDeniedHandler;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // 防csrf攻击
-        http.csrf().disable().requestMatchers().antMatchers("/**")
-        .and()
-         //添加资源控制
-        .authorizeRequests().antMatchers("/actuator/**","/test/**").permitAll().antMatchers("/**").authenticated()
-        .and()
-        .httpBasic()
-        .and()
-        .formLogin();
+        http.csrf().disable()
+                .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .httpBasic();
     }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.authenticationEntryPoint(exceptionEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
+    }
+
 }
 
 

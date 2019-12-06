@@ -1,5 +1,8 @@
 package com.dimples.auth.config;
 
+import com.dimples.auth.service.impl.UserDetailsServiceImpl;
+import com.dimples.auth.translator.AuthWebResponseExceptionTranslator;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -26,12 +29,17 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
 
     @Resource
     private AuthenticationManager authenticationManager;
+    @Resource
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
+    @SuppressWarnings("unchecked")
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.tokenStore(tokenStore())
                 .accessTokenConverter(jwtAccessTokenConverter())
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService)
+                .exceptionTranslator(webResponseExceptionTranslator());
     }
 
     /**
@@ -68,6 +76,11 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setReuseRefreshToken(true);
         return tokenServices;
+    }
+
+    @Bean
+    public AuthWebResponseExceptionTranslator webResponseExceptionTranslator(){
+        return new AuthWebResponseExceptionTranslator();
     }
 
 }

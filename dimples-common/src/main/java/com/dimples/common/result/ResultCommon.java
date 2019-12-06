@@ -1,7 +1,12 @@
 package com.dimples.common.result;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -95,6 +100,13 @@ public class ResultCommon {
         return result;
     }
 
+    public static ResultCommon error(String message) {
+        ResultCommon result = new ResultCommon();
+        result.setCode(CodeAndMessageEnum.SERVER_ERROR.getCode());
+        result.setMsg(message);
+        return result;
+    }
+
     public static ResultCommon error(CodeAndMessageEnum resultCodeEnum) {
         ResultCommon result = new ResultCommon();
         result.setCode(resultCodeEnum.getCode());
@@ -126,6 +138,22 @@ public class ResultCommon {
         result.setCode(resultCodeEnum.getCode());
         result.setMsg(resultCodeEnum.getMessage());
         return result;
+    }
+
+    /**
+     * 设置响应
+     *
+     * @param response    HttpServletResponse
+     * @param contentType content-type
+     * @param status      http状态码
+     * @param value       响应内容
+     * @throws IOException IOException
+     */
+    public static void makeResponse(HttpServletResponse response, String contentType,
+                                    int status, Object value) throws IOException {
+        response.setContentType(contentType);
+        response.setStatus(status);
+        response.getOutputStream().write(JSONObject.toJSONString(value).getBytes());
     }
 
 }
