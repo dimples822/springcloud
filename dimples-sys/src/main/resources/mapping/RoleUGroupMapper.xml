@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dimples.sys.mapper.RoleUGroupMapper">
+  <resultMap id="BaseResultMap" type="com.dimples.sys.po.RoleUGroup">
+    <!--@mbg.generated-->
+    <!--@Table tb_role_u_group-->
+    <id column="role_u_group_id" jdbcType="BIGINT" property="roleUGroupId" />
+    <result column="u_group_id" jdbcType="BIGINT" property="uGroupId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_u_group_id, u_group_id, role_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tb_role_u_group
+    where role_u_group_id = #{roleUGroupId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from tb_role_u_group
+    where role_u_group_id = #{roleUGroupId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" keyColumn="role_u_group_id" keyProperty="roleUGroupId" parameterType="com.dimples.sys.po.RoleUGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_role_u_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uGroupId != null">
+        u_group_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uGroupId != null">
+        #{uGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dimples.sys.po.RoleUGroup">
+    <!--@mbg.generated-->
+    update tb_role_u_group
+    <set>
+      <if test="uGroupId != null">
+        u_group_id = #{uGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where role_u_group_id = #{roleUGroupId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dimples.sys.po.RoleUGroup">
+    <!--@mbg.generated-->
+    update tb_role_u_group
+    set u_group_id = #{uGroupId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT}
+    where role_u_group_id = #{roleUGroupId,jdbcType=BIGINT}
+  </update>
+</mapper>

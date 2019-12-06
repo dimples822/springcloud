@@ -11,11 +11,13 @@ public class SysConstant {
     /**
      * 加密算法
      */
-    public static final String ALGORITHNAME = "MD5";
+    public static final String ALGORITHM_NAME = "MD5";
     /**
      * Hash次数
      */
-    public static final int HASHNUM = 10;
+    public static final int HASH_NUM = 10;
+
+    public static final String PRAMS_SEPARATOR = ",";
 
 }
 

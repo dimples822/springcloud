@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dimples.sys.mapper.TemplateUserMapper">
+	<resultMap id="BaseResultMap" type="com.dimples.sys.po.TemplateUser">
+		<!--@mbg.generated-->
+		<!--@Table tb_template_user-->
+		<id column="template_user_id" jdbcType="BIGINT" property="templateUserId" />
+		<result column="user_id" jdbcType="BIGINT" property="userId" />
+		<result column="template_id" jdbcType="BIGINT" property="templateId" />
+		<result column="active" jdbcType="VARCHAR" property="active" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		template_user_id, user_id, template_id, active
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		<!--@mbg.generated-->
+		select
+		<include refid="Base_Column_List" />
+		from tb_template_user
+		where template_user_id = #{templateUserId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!--@mbg.generated-->
+		delete from tb_template_user
+		where template_user_id = #{templateUserId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insertSelective" keyColumn="template_user_id" keyProperty="templateUserId"
+		parameterType="com.dimples.sys.po.TemplateUser" useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into tb_template_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="templateId != null">
+				template_id,
+			</if>
+			<if test="active != null">
+				active,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="templateId != null">
+				#{templateId,jdbcType=BIGINT},
+			</if>
+			<if test="active != null">
+				#{active,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dimples.sys.po.TemplateUser">
+		<!--@mbg.generated-->
+		update tb_template_user
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="templateId != null">
+				template_id = #{templateId,jdbcType=BIGINT},
+			</if>
+			<if test="active != null">
+				active = #{active,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where template_user_id = #{templateUserId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dimples.sys.po.TemplateUser">
+		<!--@mbg.generated-->
+		update tb_template_user
+		set user_id = #{userId,jdbcType=BIGINT},
+		template_id = #{templateId,jdbcType=BIGINT},
+		active = #{active,jdbcType=VARCHAR}
+		where template_user_id = #{templateUserId,jdbcType=BIGINT}
+	</update>
+	<update id="clearBindTemplate">
+		UPDATE tb_template_user
+		SET active = '0'
+		WHERE
+		user_id = #{userId,jdbcType=BIGINT}
+		AND template_id IN (
+		SELECT
+		t.template_id
+		FROM
+		tb_template t
+		WHERE
+		t.template_type = #{template.templateType,jdbcType=VARCHAR})
+	</update>
+	<update id="activeCurrentTemplate">
+		update tb_template_user
+		set active = '1'
+		where template_id =#{template,jdbcType=BIGINT} and user_id = #{userId,jdbcType=BIGINT}
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

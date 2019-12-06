@@ -19,33 +19,6 @@ spring:
         instance:
           prefer-ip: true
         url: http://139.9.220.155:7070/
-  redis:
-    database: 0
-    host: 47.106.102.235
-    port: 6379
-    lettuce:
-      pool:
-        min-idle: 8
-        max-idle: 500
-        max-active: 2000
-        max-wait: 10000
-    timeout: 5000
-  datasource:
-    dynamic:
-      hikari:
-        connection-timeout: 30000
-        max-lifetime: 1800000
-        max-pool-size: 15
-        min-idle: 5
-        connection-test-query: select 1
-        pool-name: FebsHikariCP
-      primary: base
-      datasource:
-        base:
-          username: root
-          password: ZHONG9602.class
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://47.106.102.235:3306/febs_cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT
 management:
   endpoint:
     health:

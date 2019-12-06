@@ -23,6 +23,7 @@
 		<module>./zuul-gateway</module>
 		<module>./dimples-common</module>
 		<module>./dimples-monitor-admin</module>
+		<module>dimples-sys</module>
 	</modules>
 
 	<groupId>com.dimples</groupId>

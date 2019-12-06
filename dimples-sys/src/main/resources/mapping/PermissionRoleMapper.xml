@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dimples.sys.mapper.PermissionRoleMapper">
+	<resultMap id="BaseResultMap" type="com.dimples.sys.po.PermissionRole">
+		<!--@mbg.generated-->
+		<!--@Table tb_permission_role-->
+		<id column="permission_role_id" jdbcType="BIGINT" property="permissionRoleId" />
+		<result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+		<result column="role_id" jdbcType="BIGINT" property="roleId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		permission_role_id, permission_id, role_id
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		<!--@mbg.generated-->
+		select
+		<include refid="Base_Column_List" />
+		from tb_permission_role
+		where permission_role_id = #{permissionRoleId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		<!--@mbg.generated-->
+		delete from tb_permission_role
+		where permission_role_id = #{permissionRoleId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insertSelective" keyColumn="permission_role_id" keyProperty="permissionRoleId"
+		parameterType="com.dimples.sys.po.PermissionRole" useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into tb_permission_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="permissionId != null">
+				permission_id,
+			</if>
+			<if test="roleId != null">
+				role_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="permissionId != null">
+				#{permissionId,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.dimples.sys.po.PermissionRole">
+		<!--@mbg.generated-->
+		update tb_permission_role
+		<set>
+			<if test="permissionId != null">
+				permission_id = #{permissionId,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where permission_role_id = #{permissionRoleId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dimples.sys.po.PermissionRole">
+		<!--@mbg.generated-->
+		update tb_permission_role
+		set permission_id = #{permissionId,jdbcType=INTEGER},
+		role_id = #{roleId,jdbcType=BIGINT}
+		where permission_role_id = #{permissionRoleId,jdbcType=BIGINT}
+	</update>
+	<insert id="bindRoleAndPermission">
+		insert into tb_permission_role(permission_id, role_id) VALUES
+		<foreach collection="list" index="index" item="item">
+			(
+			#{item,jdbcType=BIGINT},
+			#{role,jdbcType=BIGINT}
+			)
+		</foreach>
+	</insert>
+</mapper>
