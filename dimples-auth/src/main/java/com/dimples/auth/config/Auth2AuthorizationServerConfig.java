@@ -1,6 +1,7 @@
 package com.dimples.auth.config;
 
 import com.dimples.auth.properties.AuthProperties;
+import com.dimples.auth.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,9 +33,10 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
 
     @Resource
     private AuthenticationManager authenticationManager;
-
     @Resource
     private AuthProperties properties;
+    @Resource
+    private UserDetailsServiceImpl userDetailsService;
 
     /**
      * 开启授权服务器的access_token以及check_token节点
@@ -64,7 +66,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
                 .secret("$2a$10$fmv9jex7pISRkumwWziyhu4FLKzaWFFqzSdRQpymSWAnsGtnN5t9O")
                 //支持password认证方式
                 .authorizedGrantTypes("password")
-                .scopes("api");
+                .scopes("medical-emr");
     }
 
     /**
