@@ -59,8 +59,10 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+                // Basic Auth 中的用户名和密码
                 .withClient("client")
                 .secret("$2a$10$fmv9jex7pISRkumwWziyhu4FLKzaWFFqzSdRQpymSWAnsGtnN5t9O")
+                //支持password认证方式
                 .authorizedGrantTypes("password")
                 .scopes("api");
     }
@@ -101,7 +103,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
      */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("medical.jks"),"medical".toCharArray());
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("medical.jks"), "medical".toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("medical"));
         return converter;
