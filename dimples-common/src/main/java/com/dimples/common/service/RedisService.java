@@ -119,9 +119,9 @@ public class RedisService {
             if (time > 0) {
                 redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
             } else {
-                set(key, value);
+                return set(key, value);
             }
-            return true;
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -163,7 +163,7 @@ public class RedisService {
      * @param item 项 不能为 null
      * @return 值
      */
-    public Object hget(String key, String item) {
+    public Object hashGet(String key, String item) {
         return redisTemplate.opsForHash().get(key, item);
     }
 
@@ -206,9 +206,9 @@ public class RedisService {
         try {
             redisTemplate.opsForHash().putAll(key, map);
             if (time > 0) {
-                expire(key, time);
+                return expire(key, time);
             }
-            return true;
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -223,7 +223,7 @@ public class RedisService {
      * @param value 值
      * @return true 成功 false失败
      */
-    public Boolean hset(String key, String item, Object value) {
+    public Boolean hasSet(String key, String item, Object value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
@@ -242,7 +242,7 @@ public class RedisService {
      * @param time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间
      * @return true 成功 false失败
      */
-    public Boolean hset(String key, String item, Object value, Long time) {
+    public Boolean hasSet(String key, String item, Object value, Long time) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
@@ -358,8 +358,9 @@ public class RedisService {
     public Long sSetAndTime(String key, Long time, Object... values) {
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
-            if (time > 0)
+            if (time > 0) {
                 expire(key, time);
+            }
             return count;
         } catch (Exception e) {
             e.printStackTrace();

@@ -3,9 +3,7 @@ package com.dimples.auth.config;
 import com.dimples.auth.handler.AuthAccessDeniedHandler;
 import com.dimples.auth.handler.AuthExceptionEntryPoint;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
@@ -18,8 +16,8 @@ import javax.annotation.Resource;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/5
  */
-@Configuration
-@EnableResourceServer
+//@Configuration
+//@EnableResourceServer
 public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Resource

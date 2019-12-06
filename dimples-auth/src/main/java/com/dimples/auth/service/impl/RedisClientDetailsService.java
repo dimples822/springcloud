@@ -5,15 +5,14 @@ import com.dimples.common.service.RedisService;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
  * @author Yuuki
  */
 @Slf4j
-@Service
+//@Service
 public class RedisClientDetailsService extends JdbcClientDetailsService {
     /**
      * 缓存 client的 redis key，这里是 hash结构存储
      */
     private static final String CACHE_CLIENT_KEY = "client_details";
 
-    @Resource
+    @Autowired
     RedisService redisService;
 
     public RedisClientDetailsService(DataSource dataSource) {
@@ -38,8 +37,8 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws InvalidClientException {
-        ClientDetails clientDetails = null;
-        String value = (String) redisService.hget(CACHE_CLIENT_KEY, clientId);
+        ClientDetails clientDetails;
+        String value = (String) redisService.hashGet(CACHE_CLIENT_KEY, clientId);
         if (StringUtils.isBlank(value)) {
             clientDetails = cacheAndGetClient(clientId);
         } else {
@@ -58,7 +57,7 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
         ClientDetails clientDetails;
         clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {
-            redisService.hset(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
+            redisService.hasSet(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
         }
         return clientDetails;
     }
@@ -86,6 +85,6 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
             log.error("oauth_client_details表数据为空，请检查");
             return;
         }
-        list.forEach(client -> redisService.hset(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
+        list.forEach(client -> redisService.hasSet(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
     }
 }
