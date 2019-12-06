@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "dimples-sys",fallback = UserServiceFallBackImpl.class)
 public interface UserService {
 
-    @GetMapping("user/findByUsername/{username}")
+    @GetMapping("user/{username}")
     ResultCommon findByUsername(@PathVariable("username") String username);
 
 }
