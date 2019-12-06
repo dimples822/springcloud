@@ -95,7 +95,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
 
     /**
      * 配置jwt生成token的转换
-     * 使用自定义Sign Key 进行加密
+     * 使用RSA Sign Key 进行加密
      *
      * @return JwtAccessTokenConverter
      */

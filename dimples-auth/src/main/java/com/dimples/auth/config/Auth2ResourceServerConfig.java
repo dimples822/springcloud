@@ -3,9 +3,15 @@ package com.dimples.auth.config;
 import com.dimples.auth.handler.AuthAccessDeniedHandler;
 import com.dimples.auth.handler.AuthExceptionEntryPoint;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.io.IOException;
 
 import javax.annotation.Resource;
 
@@ -38,6 +44,25 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.authenticationEntryPoint(exceptionEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler);
+    }
+
+    /**
+     * 配置jwt生成token的转换
+     *
+     * @return JwtAccessTokenConverter
+     */
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        ClassPathResource classPathResource = new ClassPathResource("public.txt");
+        String publicKey;
+        try {
+            publicKey = IOUtils.toString(classPathResource.getInputStream());
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+        converter.setVerifierKey(publicKey);
+        return converter;
     }
 
 }
