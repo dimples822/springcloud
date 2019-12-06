@@ -41,6 +41,8 @@ public class PermissionController {
         int i = permissionService.insertSelective(permission);
         return i > 0 ? ResultCommon.success() : ResultCommon.failed();
     }
+
+    // TODO: 2019/12/6 根据角色id获取权限信息
 }
 
 

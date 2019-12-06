@@ -59,8 +59,9 @@ public class RoleController {
         return i > 0 ? ResultCommon.success() : ResultCommon.failed();
     }
 
-}
+    // TODO: 2019/12/6 根据用户id获取角色信息
 
+}
 
 
 

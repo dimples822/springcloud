@@ -57,8 +57,9 @@ public class UserController {
         int i = roleUserService.bingUserAndRole(userId, roleIds);
         return i > 0 ? ResultCommon.success() : ResultCommon.failed();
     }
-}
 
+    // TODO: 2019/12/6 根据用户名查询用户
+}
 
 
 
