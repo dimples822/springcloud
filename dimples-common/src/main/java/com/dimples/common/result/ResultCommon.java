@@ -17,8 +17,9 @@ import lombok.Setter;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/11/1
  */
+@SuppressWarnings("unchecked")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResultCommon {
+public class ResultCommon<T> {
 
     @Setter
     @Getter
@@ -30,19 +31,19 @@ public class ResultCommon {
 
     @Setter
     @Getter
-    private Object data;
+    private T data;
 
-    private ResultCommon() {
+    public ResultCommon() {
 
     }
 
-    public ResultCommon(Integer code, String msg, Object data) {
+    public ResultCommon(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public ResultCommon(CodeAndMessageEnum resultCodeEnum, Object data) {
+    public ResultCommon(CodeAndMessageEnum resultCodeEnum, T data) {
         this.code = resultCodeEnum.getCode();
         this.msg = resultCodeEnum.getMessage();
         this.data = data;
@@ -81,6 +82,21 @@ public class ResultCommon {
         result.setData(object);
         return result;
     }
+
+    /**
+     * 泛型数据返回
+     *
+     * @param object T
+     * @return ResultCommon<T>
+     */
+    public ResultCommon<T> ok(T object) {
+        ResultCommon result = new ResultCommon();
+        result.setCode(CodeAndMessageEnum.SUCCESS.getCode());
+        result.setMsg(CodeAndMessageEnum.SUCCESS.getMessage());
+        result.setData(object);
+        return result;
+    }
+
 
     public static ResultCommon success(CodeAndMessageEnum resultCodeEnum, Object object) {
         ResultCommon result = new ResultCommon();

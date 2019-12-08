@@ -25,4 +25,12 @@ public interface RoleService {
      */
     List<Role> findUserRole(Long id);
 
+    /**
+     * 根据用户id获取角色信息
+     *
+     * @param userId Integer
+     * @return ResultCommon<List < Role>>
+     */
+    List<Role> getRoleByUserId(Integer userId);
+
 }

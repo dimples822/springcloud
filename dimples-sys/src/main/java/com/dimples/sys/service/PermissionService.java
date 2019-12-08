@@ -1,5 +1,6 @@
 package com.dimples.sys.service;
 
+import com.dimples.common.vo.PermissionVo;
 import com.dimples.sys.po.Permission;
 
 import java.util.List;
@@ -27,5 +28,14 @@ public interface PermissionService {
      * @return List<Permission>
      */
     List<Permission> findUserPermissions(Long id);
+
+    /**
+     * 根据角色id获取权限信息
+     *
+     * @param roleId Integer
+     * @return List<PermissionVo>
+     */
+    List<PermissionVo> getRolePermission(Integer roleId);
+
 }
 

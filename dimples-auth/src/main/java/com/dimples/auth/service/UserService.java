@@ -2,6 +2,7 @@ package com.dimples.auth.service;
 
 import com.dimples.auth.fallback.UserServiceFallBackImpl;
 import com.dimples.common.result.ResultCommon;
+import com.dimples.common.vo.UserVo;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface UserService {
 
     @GetMapping("user/{username}")
-    ResultCommon findByUsername(@PathVariable("username") String username);
+    ResultCommon<UserVo> findByUsername(@PathVariable("username") String username);
 
 }
 

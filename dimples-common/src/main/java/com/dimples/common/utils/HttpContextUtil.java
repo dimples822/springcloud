@@ -99,7 +99,6 @@ public class HttpContextUtil {
      * @throws UnknownHostException UnknownHostException
      */
     public static String getLocalMac(String ipAddress) throws SocketException, UnknownHostException {
-        // TODO Auto-generated method stub
         String str;
         String macAddress = "";
         // 如果为127.0.0.1,则获取本地MAC地址。

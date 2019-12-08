@@ -1,5 +1,6 @@
 package com.dimples.sys.mapper;
 
+import com.dimples.common.vo.PermissionVo;
 import com.dimples.sys.po.Permission;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,6 @@ public interface PermissionMapper {
     int updateByPrimaryKey(Permission record);
 
     List<Permission> findUserPermissions(Long id);
+
+    List<PermissionVo> getRolePermission(Integer roleId);
 }

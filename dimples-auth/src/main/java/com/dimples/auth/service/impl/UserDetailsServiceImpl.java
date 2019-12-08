@@ -5,7 +5,7 @@ import com.dimples.auth.service.RoleService;
 import com.dimples.auth.service.UserService;
 import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.result.ResultCommon;
-import com.dimples.common.vo.MenuVo;
+import com.dimples.common.vo.PermissionVo;
 import com.dimples.common.vo.RoleVo;
 import com.dimples.common.vo.UserVo;
 
@@ -67,10 +67,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 //获取权限
                 ResultCommon perResult = permissionService.getRolePermission(role.getId());
                 if (perResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
-                    List<MenuVo> permissionList = (List<MenuVo>) perResult.getData();
-                    for (MenuVo menu : permissionList
-                    ) {
-                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getCode());
+                    List<PermissionVo> permissionList = (List<PermissionVo>) perResult.getData();
+                    for (PermissionVo menu : permissionList) {
+                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPermission());
                         grantedAuthorities.add(authority);
                     }
                 }

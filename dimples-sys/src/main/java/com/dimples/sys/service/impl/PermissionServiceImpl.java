@@ -1,5 +1,6 @@
 package com.dimples.sys.service.impl;
 
+import com.dimples.common.vo.PermissionVo;
 import com.dimples.sys.mapper.PermissionMapper;
 import com.dimples.sys.po.Permission;
 import com.dimples.sys.service.PermissionService;
@@ -50,6 +51,11 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public List<Permission> findUserPermissions(Long id) {
         return permissionMapper.findUserPermissions(id);
+    }
+
+    @Override
+    public List<PermissionVo> getRolePermission(Integer roleId) {
+        return permissionMapper.getRolePermission(roleId);
     }
 }
 
