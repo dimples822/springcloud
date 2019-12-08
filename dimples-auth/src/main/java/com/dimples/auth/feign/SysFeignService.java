@@ -16,15 +16,33 @@ import java.util.List;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/8
  */
-@FeignClient(name = "dimples-sys",fallback = SysFeignServiceFallBackImpl.class)
+@FeignClient(name = "dimples-sys", fallback = SysFeignServiceFallBackImpl.class)
 public interface SysFeignService {
 
+    /**
+     * 根据用户名查询用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
     @GetMapping("user/{username}")
     ResultCommon<UserVo> findByUsername(@PathVariable("username") String username);
 
+    /**
+     * 根据用户id查询用户角色信息
+     *
+     * @param userId 用户id
+     * @return 角色信息
+     */
     @GetMapping("role/{userId}")
     ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Long userId);
 
+    /**
+     * 根据角色id查询权限信息
+     *
+     * @param roleId 角色id
+     * @return 权限信息
+     */
     @GetMapping("perms/{roleId}")
     ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Long roleId);
 
