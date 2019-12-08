@@ -52,7 +52,7 @@ public class PermissionController {
     @ApiImplicitParam(value = "角色id", paramType = "path", dataType = "int")
     @OpsLog(value = "根据角色id获取权限信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{roleId}")
-    public ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Integer roleId) {
+    public ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable Integer roleId) {
         List<PermissionVo> permissionVos = permissionService.getRolePermission(roleId);
         return new ResultCommon<List<PermissionVo>>().ok(permissionVos);
     }

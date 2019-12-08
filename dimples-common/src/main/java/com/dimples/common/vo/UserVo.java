@@ -18,7 +18,7 @@ import lombok.Data;
 public class UserVo implements Serializable {
     private static final long serialVersionUID = 3881610071550902762L;
 
-    private Integer id;
+    private Long userId;
 
     private String username;
 
@@ -36,11 +36,12 @@ public class UserVo implements Serializable {
 
     private String phone;
 
-    private Integer status;
+    private Byte status;
 
     private Date createTime;
 
     private Date updateTime;
+
 }
 
 

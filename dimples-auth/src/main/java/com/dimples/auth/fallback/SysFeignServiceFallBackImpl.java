@@ -28,13 +28,13 @@ public class SysFeignServiceFallBackImpl implements SysFeignService {
     }
 
     @Override
-    public ResultCommon<List<RoleVo>> getRoleByUserId(Integer userId) {
+    public ResultCommon<List<RoleVo>> getRoleByUserId(Long userId) {
         log.info("调用{}失败", "getRoleByUserId");
         throw new BizException("调用getRoleByUserId失败");
     }
 
     @Override
-    public ResultCommon<List<PermissionVo>> getRolePermission(Integer roleId) {
+    public ResultCommon<List<PermissionVo>> getRolePermission(Long roleId) {
         log.info("调用{}失败", "getRolePermission");
         throw new BizException("调用getRolePermission失败");
     }

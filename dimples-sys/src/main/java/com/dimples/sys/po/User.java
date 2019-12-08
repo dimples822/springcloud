@@ -1,8 +1,16 @@
 package com.dimples.sys.po;
 
+import com.dimples.common.vo.UserVo;
+
 import java.util.Date;
+
 import lombok.Data;
 
+/**
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2019/12/8
+  */
 @Data
 public class User {
     /**
@@ -39,4 +47,29 @@ public class User {
      * 更新日期
      */
     private Date modifyDate;
+
+    public static UserVo convert(User user){
+        UserVo userVo = new UserVo();
+        userVo.setUserId(user.getUserId());
+        userVo.setName(user.getUsername());
+        userVo.setPassword(user.getPassword());
+        userVo.setStatus(user.getStatus());
+        userVo.setCreateTime(user.getCreateDate());
+        userVo.setUpdateTime(user.getModifyDate());
+        return userVo;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

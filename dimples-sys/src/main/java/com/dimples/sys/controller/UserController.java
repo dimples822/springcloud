@@ -9,7 +9,6 @@ import com.dimples.sys.po.User;
 import com.dimples.sys.service.RoleUserService;
 import com.dimples.sys.service.UserService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,8 +68,7 @@ public class UserController {
     @GetMapping("/{username}")
     public ResultCommon<UserVo> findByUsername(@PathVariable("username") String username) {
         User users = userService.findByName(username);
-        UserVo userVo = new UserVo();
-        BeanUtils.copyProperties(users, userVo);
+        UserVo userVo = User.convert(users);
         return new ResultCommon<UserVo>().ok(userVo);
     }
 }

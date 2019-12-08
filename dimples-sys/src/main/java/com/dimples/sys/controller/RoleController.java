@@ -9,7 +9,6 @@ import com.dimples.sys.po.Role;
 import com.dimples.sys.service.PermissionRoleService;
 import com.dimples.sys.service.RoleService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,10 +76,13 @@ public class RoleController {
     @ApiImplicitParam(value = "用户id", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户id获取角色信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{userId}")
-    public ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Integer userId) {
+    public ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable Integer userId) {
         List<Role> roles = roleService.getRoleByUserId(userId);
         List<RoleVo> roleVos = new ArrayList<>();
-        BeanUtils.copyProperties(roles, roleVos);
+        roles.forEach(role -> {
+            RoleVo roleVo = Role.convert(role);
+            roleVos.add(roleVo);
+        });
         return new ResultCommon<List<RoleVo>>().ok(roleVos);
     }
 

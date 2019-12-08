@@ -7,7 +7,6 @@ import com.dimples.common.vo.PermissionVo;
 import com.dimples.common.vo.RoleVo;
 import com.dimples.common.vo.UserVo;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -48,17 +47,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final boolean credentialsNonExpired = true;
         // 锁定性 :true:未锁定 false:已锁定
         final boolean accountNonLocked = true;
-        UserVo userVo = new UserVo();
-        BeanUtils.copyProperties(userResult.getData(), userVo);
-        ResultCommon<List<RoleVo>> roleResult = sysFeignService.getRoleByUserId(userVo.getId());
-        if (roleResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
+        UserVo data = userResult.getData();
+        ResultCommon<List<RoleVo>> roleResult = sysFeignService.getRoleByUserId(data.getUserId());
+        if (roleResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
             List<RoleVo> roleVoList = roleResult.getData();
             for (RoleVo role : roleVoList) {
                 //角色必须是ROLE_开头，可以在数据库中设置
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getValue());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
-                ResultCommon<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getId());
+                ResultCommon<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getRoleId());
                 if (perResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
                     List<PermissionVo> permissionList = perResult.getData();
                     for (PermissionVo menu : permissionList) {
@@ -68,7 +66,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 }
             }
         }
-        return new User(userVo.getUsername(), userVo.getPassword(),
+        return new User(data.getUsername(), data.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
     }
 }

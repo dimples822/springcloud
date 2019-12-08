@@ -3,6 +3,11 @@ package com.dimples.sys.po;
 import java.util.Date;
 import lombok.Data;
 
+/**
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2019/12/8
+  */
 @Data
 public class Permission {
     public static final String TYPE_MENU = "menu";

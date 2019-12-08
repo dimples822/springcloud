@@ -23,10 +23,10 @@ public interface SysFeignService {
     ResultCommon<UserVo> findByUsername(@PathVariable("username") String username);
 
     @GetMapping("role/{userId}")
-    ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Integer userId);
+    ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Long userId);
 
     @GetMapping("perms/{roleId}")
-    ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Integer roleId);
+    ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Long roleId);
 
 }
 

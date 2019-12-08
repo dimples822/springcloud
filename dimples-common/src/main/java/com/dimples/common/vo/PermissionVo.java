@@ -4,6 +4,11 @@ import java.util.Date;
 
 import lombok.Data;
 
+/**
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2019/12/8
+  */
 @Data
 public class PermissionVo {
     public static final String TYPE_MENU = "menu";
