@@ -53,11 +53,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             List<RoleVo> roleVoList = roleResult.getData();
             for (RoleVo role : roleVoList) {
                 //角色必须是ROLE_开头，可以在数据库中设置
-                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getValue());
+                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRoleName());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
                 ResultCommon<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getRoleId());
-                if (perResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
+                if (perResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
                     List<PermissionVo> permissionList = perResult.getData();
                     for (PermissionVo menu : permissionList) {
                         GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPermission());

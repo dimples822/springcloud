@@ -51,7 +51,7 @@ public class User {
     public static UserVo convert(User user){
         UserVo userVo = new UserVo();
         userVo.setUserId(user.getUserId());
-        userVo.setName(user.getUsername());
+        userVo.setUsername(user.getUsername());
         userVo.setPassword(user.getPassword());
         userVo.setStatus(user.getStatus());
         userVo.setCreateTime(user.getCreateDate());
