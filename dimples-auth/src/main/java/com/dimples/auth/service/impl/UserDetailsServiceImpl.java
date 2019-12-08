@@ -39,10 +39,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
     private PermissionService permissionService;
 
-    @SuppressWarnings("unchecked")
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ResultCommon userResult = userService.findByUsername(username);
+        ResultCommon<UserVo> userResult = userService.findByUsername(username);
         if (userResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
@@ -57,17 +56,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final boolean accountNonLocked = true;
         UserVo userVo = new UserVo();
         BeanUtils.copyProperties(userResult.getData(), userVo);
-        ResultCommon roleResult = roleService.getRoleByUserId(userVo.getId());
+        ResultCommon<List<RoleVo>> roleResult = roleService.getRoleByUserId(userVo.getId());
         if (roleResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
-            List<RoleVo> roleVoList = (List<RoleVo>) roleResult.getData();
+            List<RoleVo> roleVoList = roleResult.getData();
             for (RoleVo role : roleVoList) {
                 //角色必须是ROLE_开头，可以在数据库中设置
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getValue());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
-                ResultCommon perResult = permissionService.getRolePermission(role.getId());
+                ResultCommon<List<PermissionVo>> perResult = permissionService.getRolePermission(role.getId());
                 if (perResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
-                    List<PermissionVo> permissionList = (List<PermissionVo>) perResult.getData();
+                    List<PermissionVo> permissionList = perResult.getData();
                     for (PermissionVo menu : permissionList) {
                         GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPermission());
                         grantedAuthorities.add(authority);
