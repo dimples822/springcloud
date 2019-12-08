@@ -1,8 +1,6 @@
 server:
   port: 7001
 spring:
-  application:
-    name: dimples-sys
   profiles:
     active: dev
   jackson:
@@ -20,16 +18,15 @@ spring:
         connection-timeout: 30000
         connection-test-query: select 1
         pool-name: HikariCP
-  cloud:
-    nacos:
-      config:
-        group: DEFAULT_GROUP
-        prefix: dimples-auth
-        file-extension: properties
-        server-addr: 139.9.220.155:8848
-      discovery.server-addr: 139.9.220.155:8848
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: com.dimples.sys.po
   mapper-locations: mapping/*.xml
+
+logging:
+  level:
+    com:
+      dimples:
+        sys:
+          mapper: debug

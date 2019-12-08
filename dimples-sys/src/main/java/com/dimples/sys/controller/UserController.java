@@ -4,10 +4,12 @@ import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.result.ResultCommon;
+import com.dimples.common.vo.UserVo;
 import com.dimples.sys.po.User;
 import com.dimples.sys.service.RoleUserService;
 import com.dimples.sys.service.UserService;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,9 +67,11 @@ public class UserController {
     @ApiImplicitParam(value = "用户名", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户名查询用户", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{username}")
-    public ResultCommon<User> findByUsername(@PathVariable String username) {
+    public ResultCommon<UserVo> findByUsername(@PathVariable("username") String username) {
         User users = userService.findByName(username);
-        return new ResultCommon<User>().ok(users);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(users, userVo);
+        return new ResultCommon<UserVo>().ok(userVo);
     }
 }
 

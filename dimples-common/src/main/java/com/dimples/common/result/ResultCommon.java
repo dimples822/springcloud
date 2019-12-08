@@ -149,6 +149,13 @@ public class ResultCommon<T> {
         return result;
     }
 
+    public ResultCommon<T> fail(String msg) {
+        ResultCommon result = new ResultCommon();
+        result.setCode(CodeAndMessageEnum.FAIL.getCode());
+        result.setMsg(msg);
+        return result;
+    }
+
     public static ResultCommon failed(CodeAndMessageEnum resultCodeEnum) {
         ResultCommon result = new ResultCommon();
         result.setCode(resultCodeEnum.getCode());

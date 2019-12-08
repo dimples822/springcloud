@@ -13,6 +13,8 @@ spring:
     name: dimples-auth
   profiles:
     active: dev
+  main:
+    allow-bean-definition-overriding: true  # 解决多个接口上的@FeignClient(“相同服务名”)会报错
   boot:
     admin:
       client:
