@@ -99,7 +99,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     /**
      * 配置token存储源
      * 采用jwt作为Token生成格式
-     * 并且使用自定义的 加密Key进行加密
+     * 并且使用RSA非对称进行加密
      *
      * @return TokenStore
      */
