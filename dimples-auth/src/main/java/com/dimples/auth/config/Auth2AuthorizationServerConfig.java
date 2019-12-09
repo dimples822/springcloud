@@ -65,12 +65,16 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                // Basic Auth 中的用户名和密码
+                // Basic Auth 中的用户名和密码 , 实际上会转换成Header中的 Authorization=Basic Y2xpZW50OmNsaWVudFNlY3JldA==
                 .withClient("client")
                 .secret("$2a$10$fmv9jex7pISRkumwWziyhu4FLKzaWFFqzSdRQpymSWAnsGtnN5t9O")
                 //支持password认证方式
                 .authorizedGrantTypes("password")
-                .scopes("medical-emr");
+                .scopes("dimples")
+                .and()
+                .withClient("browser")
+                .authorizedGrantTypes("password")
+                .scopes("dimples");
     }
 
     /**
