@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -64,6 +63,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // TODO: 2019/12/9 需要重新配置存储位置 需要自定义 ClientDetails
         clients.inMemory()
                 // Basic Auth 中的用户名和密码 , 实际上会转换成Header中的 Authorization=Basic Y2xpZW50OmNsaWVudFNlY3JldA==
                 .withClient("client")
@@ -116,12 +116,17 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
      */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("medical.jks"), "medical".toCharArray());
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("dimples.jks"), "dimples".toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("medical"));
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("dimples"));
         return converter;
     }
 
+    /**
+     * 完成token生成、过期等
+     *
+     * @return DefaultTokenServices
+     */
     @Bean
     @Primary
     public DefaultTokenServices defaultTokenServices() {
@@ -129,11 +134,6 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
         return tokenServices;
-    }
-
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return new AuthTokenEnhancer();
     }
 
 }
