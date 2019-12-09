@@ -24,6 +24,9 @@ spring:
         instance:
           prefer-ip: true
         url: http://139.9.220.155:7070/
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 management:
   endpoint:
     health:

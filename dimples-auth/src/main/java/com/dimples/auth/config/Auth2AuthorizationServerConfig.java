@@ -2,6 +2,7 @@ package com.dimples.auth.config;
 
 import com.dimples.auth.properties.AuthProperties;
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;
+import com.dimples.auth.translator.AuthWebResponseExceptionTranslator;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -37,6 +39,8 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     private AuthProperties properties;
     @Resource
     private UserDetailsServiceImpl userDetailsService;
+    @Resource
+    private AuthWebResponseExceptionTranslator exceptionTranslator;
 
     /**
      * 开启授权服务器的access_token以及check_token节点
@@ -74,6 +78,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
      *
      * @param endpoints AuthorizationServerEndpointsConfigurer
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
@@ -82,7 +87,9 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
                 // 配置权限管理
                 .authenticationManager(authenticationManager)
                 // 配置access_token使用的转换
-                .accessTokenConverter(jwtAccessTokenConverter());
+                .accessTokenConverter(jwtAccessTokenConverter())
+                // 配置异常翻译
+                .exceptionTranslator(exceptionTranslator);
     }
 
     /**
@@ -118,6 +125,11 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
         return tokenServices;
+    }
+
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return new AuthTokenEnhancer();
     }
 
 }

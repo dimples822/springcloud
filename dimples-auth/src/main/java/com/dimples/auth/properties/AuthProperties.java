@@ -19,6 +19,11 @@ public class AuthProperties {
      * 免认证访问路径
      */
     private String anonUrl;
+
+    /**
+     * 支持的认证方式
+     */
+    private String grantType;
     /**
      * JWT加签密钥
      */

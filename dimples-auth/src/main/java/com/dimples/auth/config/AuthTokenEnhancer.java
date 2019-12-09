@@ -1,8 +1,12 @@
 package com.dimples.auth.config;
 
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 在访问令牌中添加一些自定义声明
@@ -12,10 +16,13 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/5
  */
-public class JwtTokenEnhancer implements TokenEnhancer {
+public class AuthTokenEnhancer implements TokenEnhancer {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-        return null;
+        Map<String, Object> additionalInfo = new HashMap<>(5);
+        additionalInfo.put("organization", "dimples");
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+        return accessToken;
     }
 }
 
