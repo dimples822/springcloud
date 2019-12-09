@@ -30,3 +30,8 @@ logging:
       dimples:
         sys:
           mapper: debug
+      alibaba:
+        cloud:
+          nacos:
+            client:
+              NacosPropertySourceBuilder: error
