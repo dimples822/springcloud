@@ -55,7 +55,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
      *
      * @param clientId clientId
      */
-    public ClientDetails cacheAndGetClient(String clientId) {
+    private ClientDetails cacheAndGetClient(String clientId) {
         ClientDetails clientDetails;
         clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {
