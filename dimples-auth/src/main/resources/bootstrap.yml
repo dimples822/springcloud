@@ -17,18 +17,10 @@ spring:
         file-extension: properties
         server-addr: 139.9.220.155:8848
       discovery.server-addr: 139.9.220.155:8848
-  application:
-    name: dimples-auth
   profiles:
     active: dev
   main:
     allow-bean-definition-overriding: true  # 解决多个接口上的@FeignClient(“相同服务名”)会报错
-  boot:
-    admin:
-      client:
-        instance:
-          prefer-ip: true
-        url: http://139.9.220.155:7070/
   redis:
     database: 0
     host: 47.106.102.235
@@ -43,14 +35,6 @@ spring:
 ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: "*"
 logging:
   level:
     com:
