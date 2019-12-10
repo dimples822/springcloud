@@ -157,6 +157,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
+        tokenServices.setClientDetailsService(redisClientDetailsService);
         return tokenServices;
     }
 

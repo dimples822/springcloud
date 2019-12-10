@@ -7,17 +7,17 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
-      username: root
-      password: ZHONG9602.class
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://47.106.102.235:3306/db_base_permission?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=true
-      hikari:
-        minimum-idle: 5
-        maximum-pool-size: 15
-        max-lifetime: 1800000
-        connection-timeout: 30000
-        connection-test-query: select 1
-        pool-name: HikariCP
+    username: root
+    password: ZHONG9602.class
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.106.102.235:3306/db_base_permission?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=true
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+      pool-name: HikariCP
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -31,7 +31,6 @@ logging:
         sys:
           mapper: debug
       alibaba:
-        cloud:
-          nacos:
-            client:
-              NacosPropertySourceBuilder: error
+        nacos:
+          client:
+            naming: error

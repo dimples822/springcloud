@@ -55,7 +55,6 @@ logging:
   level:
     com:
       alibaba:
-        cloud:
-          nacos:
-            client:
-              NacosPropertySourceBuilder: error
+        nacos:
+          client:
+            naming: error

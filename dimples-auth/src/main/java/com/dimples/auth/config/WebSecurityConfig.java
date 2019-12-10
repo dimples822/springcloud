@@ -1,5 +1,7 @@
 package com.dimples.auth.config;
 
+import com.dimples.auth.service.impl.UserDetailsServiceImpl;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.annotation.Resource;
+
 /**
  * SpringSecurity安全认证配置类
  * 配置security的授权信息
@@ -21,6 +25,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Resource
+    private UserDetailsServiceImpl userDetailsService;
 
     /**
      * 配置基本权限
@@ -48,10 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("$2a$10$TBrSoIWEiAQaEEPswpl1guJ7vqt6Z/lMLWD3lhDy0UAVxMHpSBvie").roles("USER")
-                .and()
-                .withUser("admin").password("$2a$10$TBrSoIWEiAQaEEPswpl1guJ7vqt6Z/lMLWD3lhDy0UAVxMHpSBvie").roles("ADMIN");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     /**
