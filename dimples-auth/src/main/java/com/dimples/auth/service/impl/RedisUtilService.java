@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class RedisServiceImpl {
+public class RedisUtilService {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;

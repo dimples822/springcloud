@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
 
     @Resource
-    private RedisServiceImpl redisService;
+    private RedisUtilService redisService;
 
     /**
      * 缓存 client的 redis key，这里是 hash结构存储
