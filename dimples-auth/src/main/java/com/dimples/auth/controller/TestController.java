@@ -1,11 +1,8 @@
 package com.dimples.auth.controller;
 
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;
-import com.dimples.common.annotation.OpsLog;
-import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.result.ResultCommon;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,15 +27,6 @@ public class TestController {
 
     @Resource
     private UserDetailsServiceImpl userDetailsService;
-
-    @Value("${test:lily}")
-    private String test;
-
-    @OpsLog(value = "多模块引用测试", type = OpsLogTypeEnum.TEST)
-    @GetMapping("/name")
-    public String test() {
-        return test;
-    }
 
     @GetMapping("/auth/user")
     public ResultCommon<UserDetails> getAuth() {
