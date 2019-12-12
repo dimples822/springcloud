@@ -15,6 +15,7 @@
 	<properties>
 		<swagger2>2.9.2</swagger2>
 		<swagger.ui>2.9.2</swagger.ui>
+		<swagger.bootstrap.ui.version>1.9.3</swagger.bootstrap.ui.version>
 		<swagger.swagger-annotations.version>1.5.21</swagger.swagger-annotations.version>
 		<swagger.swagger-models.version>1.5.21</swagger.swagger-models.version>
 	</properties>
@@ -56,12 +57,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- swagger-ui -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.ui}</version>
-		</dependency>
 		<!--解决进入swagger页面报类型转换错误，排除2.9.2中的引用，手动增加1.5.21版本-->
 		<dependency>
 			<groupId>io.swagger</groupId>
@@ -72,6 +67,12 @@
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-models</artifactId>
 			<version>${swagger.swagger-models.version}</version>
+		</dependency>
+		<!-- swagger-bootstrap-ui -->
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>${swagger.bootstrap.ui.version}</version>
 		</dependency>
 		<!-- nacos 服务注册 -->
 		<dependency>
