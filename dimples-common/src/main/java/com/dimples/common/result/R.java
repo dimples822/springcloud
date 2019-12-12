@@ -19,7 +19,7 @@ import lombok.Setter;
  */
 @SuppressWarnings("unchecked")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResultCommon<T> {
+public class R<T> {
 
     @Setter
     @Getter
@@ -33,17 +33,17 @@ public class ResultCommon<T> {
     @Getter
     private T data;
 
-    public ResultCommon() {
+    public R() {
 
     }
 
-    public ResultCommon(Integer code, String msg, T data) {
+    public R(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public ResultCommon(CodeAndMessageEnum resultCodeEnum, T data) {
+    public R(CodeAndMessageEnum resultCodeEnum, T data) {
         this.code = resultCodeEnum.getCode();
         this.msg = resultCodeEnum.getMessage();
         this.data = data;
@@ -55,12 +55,12 @@ public class ResultCommon<T> {
      * @param code 异常的状态码，如：401（身份验证失败）、500（服务器内部错误）
      * @param msg  异常的提示信息
      */
-    public ResultCommon(Integer code, String msg) {
+    public R(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResultCommon(CodeAndMessageEnum resultCodeEnum) {
+    public R(CodeAndMessageEnum resultCodeEnum) {
         this.code = resultCodeEnum.getCode();
         this.msg = resultCodeEnum.getMessage();
     }
@@ -68,15 +68,15 @@ public class ResultCommon<T> {
     /**
      * 成功但不带数据
      **/
-    public static ResultCommon success() {
-        ResultCommon result = new ResultCommon();
+    public static R success() {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.SUCCESS.getCode());
         result.setMsg(CodeAndMessageEnum.SUCCESS.getMessage());
         return result;
     }
 
-    public static ResultCommon success(Object object) {
-        ResultCommon result = new ResultCommon();
+    public static R success(Object object) {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.SUCCESS.getCode());
         result.setMsg(CodeAndMessageEnum.SUCCESS.getMessage());
         result.setData(object);
@@ -87,10 +87,10 @@ public class ResultCommon<T> {
      * 泛型数据返回
      *
      * @param object T
-     * @return ResultCommon<T>
+     * @return R<T>
      */
-    public ResultCommon<T> ok(T object) {
-        ResultCommon result = new ResultCommon();
+    public R<T> ok(T object) {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.SUCCESS.getCode());
         result.setMsg(CodeAndMessageEnum.SUCCESS.getMessage());
         result.setData(object);
@@ -98,8 +98,8 @@ public class ResultCommon<T> {
     }
 
 
-    public static ResultCommon success(CodeAndMessageEnum resultCodeEnum, Object object) {
-        ResultCommon result = new ResultCommon();
+    public static R success(CodeAndMessageEnum resultCodeEnum, Object object) {
+        R result = new R();
         result.setCode(resultCodeEnum.getCode());
         result.setMsg(resultCodeEnum.getMessage());
         result.setData(object);
@@ -109,22 +109,22 @@ public class ResultCommon<T> {
     /**
      * 失败
      **/
-    public static ResultCommon error(Integer code, String msg) {
-        ResultCommon result = new ResultCommon();
+    public static R error(Integer code, String msg) {
+        R result = new R();
         result.setCode(code);
         result.setMsg(msg);
         return result;
     }
 
-    public static ResultCommon error(String message) {
-        ResultCommon result = new ResultCommon();
+    public static R error(String message) {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.SERVER_ERROR.getCode());
         result.setMsg(message);
         return result;
     }
 
-    public static ResultCommon error(CodeAndMessageEnum resultCodeEnum) {
-        ResultCommon result = new ResultCommon();
+    public static R error(CodeAndMessageEnum resultCodeEnum) {
+        R result = new R();
         result.setCode(resultCodeEnum.getCode());
         result.setMsg(resultCodeEnum.getMessage());
         return result;
@@ -133,31 +133,31 @@ public class ResultCommon<T> {
     /**
      * 操作失败
      *
-     * @return ResultCommon
+     * @return R
      */
-    public static ResultCommon failed() {
-        ResultCommon result = new ResultCommon();
+    public static R failed() {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.FAIL.getCode());
         result.setMsg(CodeAndMessageEnum.FAIL.getMessage());
         return result;
     }
 
-    public static ResultCommon failed(String msg) {
-        ResultCommon result = new ResultCommon();
+    public static R failed(String msg) {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.FAIL.getCode());
         result.setMsg(msg);
         return result;
     }
 
-    public ResultCommon<T> fail(String msg) {
-        ResultCommon result = new ResultCommon();
+    public R<T> fail(String msg) {
+        R result = new R();
         result.setCode(CodeAndMessageEnum.FAIL.getCode());
         result.setMsg(msg);
         return result;
     }
 
-    public static ResultCommon failed(CodeAndMessageEnum resultCodeEnum) {
-        ResultCommon result = new ResultCommon();
+    public static R failed(CodeAndMessageEnum resultCodeEnum) {
+        R result = new R();
         result.setCode(resultCodeEnum.getCode());
         result.setMsg(resultCodeEnum.getMessage());
         return result;

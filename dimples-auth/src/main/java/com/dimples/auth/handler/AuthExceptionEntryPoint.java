@@ -1,6 +1,6 @@
 package com.dimples.auth.handler;
 
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -18,9 +18,9 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        ResultCommon.makeResponse(
+        R.makeResponse(
                 response, MediaType.APPLICATION_JSON_VALUE,
-                HttpServletResponse.SC_UNAUTHORIZED, ResultCommon.error("token无效")
+                HttpServletResponse.SC_UNAUTHORIZED, R.error("token无效")
         );
     }
 }

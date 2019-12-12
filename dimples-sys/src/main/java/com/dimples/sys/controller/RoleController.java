@@ -3,7 +3,7 @@ package com.dimples.sys.controller;
 import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.eunm.OpsLogTypeEnum;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 import com.dimples.common.vo.RoleVo;
 import com.dimples.sys.po.Role;
 import com.dimples.sys.service.PermissionRoleService;
@@ -50,40 +50,40 @@ public class RoleController {
     @OpsLog(value = "新增角色", type = OpsLogTypeEnum.ADD)
     @ApiParam(name = "roleName", required = true, type = "String")
     @PostMapping("/add")
-    public ResultCommon add(Role role) {
+    public R add(Role role) {
         if (role.getRoleName().isEmpty()) {
-            return ResultCommon.failed(CodeAndMessageEnum.FIELD_INCOMPLETE);
+            return R.failed(CodeAndMessageEnum.FIELD_INCOMPLETE);
         }
         int i = roleService.insertSelective(role);
-        return i > 0 ? ResultCommon.success() : ResultCommon.failed();
+        return i > 0 ? R.success() : R.failed();
     }
 
     @ApiOperation("绑定角色与权限(一个或多个)关系,以','分隔")
     @OpsLog(value = "绑定角色与权限(一个或多个)关系", type = OpsLogTypeEnum.ADD)
     @PostMapping("/bind/perm")
-    public ResultCommon bindRoleAndPermission(Long role, String perms) {
+    public R bindRoleAndPermission(Long role, String perms) {
         int i = permissionRoleService.bindRoleAndPermission(role, perms);
-        return i > 0 ? ResultCommon.success() : ResultCommon.failed();
+        return i > 0 ? R.success() : R.failed();
     }
 
     /**
      * 根据用户id获取角色信息
      *
      * @param userId Integer
-     * @return ResultCommon<List < Role>>
+     * @return R<List < Role>>
      */
     @ApiOperation("根据用户id获取角色信息")
     @ApiImplicitParam(value = "用户id", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户id获取角色信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{userId}")
-    public ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable Integer userId) {
+    public R<List<RoleVo>> getRoleByUserId(@PathVariable Integer userId) {
         List<Role> roles = roleService.getRoleByUserId(userId);
         List<RoleVo> roleVos = new ArrayList<>();
         roles.forEach(role -> {
             RoleVo roleVo = Role.convert(role);
             roleVos.add(roleVo);
         });
-        return new ResultCommon<List<RoleVo>>().ok(roleVos);
+        return new R<List<RoleVo>>().ok(roleVos);
     }
 
 }

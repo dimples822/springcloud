@@ -2,7 +2,7 @@ package com.dimples.auth.exception;
 
 import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.exception.BizException;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,24 +25,24 @@ public class GlobalExceptionHandler {
      * 拦截业务异常
      *
      * @param e BizException
-     * @return ResultCommon
+     * @return R
      */
     @ExceptionHandler(BizException.class)
-    public ResultCommon bizException(BizException e) {
+    public R bizException(BizException e) {
         log.error("业务异常:" + e.getMessage());
-        return ResultCommon.error(e.getCode(), e.getMessage());
+        return R.error(e.getCode(), e.getMessage());
     }
 
     /**
      * 拦截系统异常
      *
      * @param e Exception
-     * @return ResultCommon
+     * @return R
      */
     @ExceptionHandler(RuntimeException.class)
-    public ResultCommon exceptionHandler(RuntimeException e) {
+    public R exceptionHandler(RuntimeException e) {
         log.error("系统异常:" + e.getMessage());
-        return ResultCommon.error(CodeAndMessageEnum.SERVER_ERROR.getCode(), CodeAndMessageEnum.SERVER_ERROR.getMessage());
+        return R.error(CodeAndMessageEnum.SERVER_ERROR.getCode(), CodeAndMessageEnum.SERVER_ERROR.getMessage());
     }
 
 }

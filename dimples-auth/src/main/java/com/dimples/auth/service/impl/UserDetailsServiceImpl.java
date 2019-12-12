@@ -2,7 +2,7 @@ package com.dimples.auth.service.impl;
 
 import com.dimples.auth.feign.SysFeignService;
 import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 import com.dimples.common.vo.PermissionVo;
 import com.dimples.common.vo.RoleVo;
 import com.dimples.common.vo.UserVo;
@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ResultCommon<UserVo> userResult = sysFeignService.findByUsername(username);
+        R<UserVo> userResult = sysFeignService.findByUsername(username);
         if (userResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
@@ -48,7 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 锁定性 :true:未锁定 false:已锁定
         final boolean accountNonLocked = true;
         UserVo data = userResult.getData();
-        ResultCommon<List<RoleVo>> roleResult = sysFeignService.getRoleByUserId(data.getUserId());
+        R<List<RoleVo>> roleResult = sysFeignService.getRoleByUserId(data.getUserId());
         if (roleResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
             List<RoleVo> roleVoList = roleResult.getData();
             for (RoleVo role : roleVoList) {
@@ -56,7 +56,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRoleName());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
-                ResultCommon<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getRoleId());
+                R<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getRoleId());
                 if (perResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
                     List<PermissionVo> permissionList = perResult.getData();
                     for (PermissionVo menu : permissionList) {

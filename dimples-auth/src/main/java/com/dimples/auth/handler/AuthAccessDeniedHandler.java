@@ -1,6 +1,6 @@
 package com.dimples.auth.handler;
 
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -20,8 +20,8 @@ public class AuthAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException {
-        ResultCommon.makeResponse(response, MediaType.APPLICATION_JSON_VALUE,
-                HttpServletResponse.SC_FORBIDDEN, ResultCommon.error("没有权限访问该资源"));
+        R.makeResponse(response, MediaType.APPLICATION_JSON_VALUE,
+                HttpServletResponse.SC_FORBIDDEN, R.error("没有权限访问该资源"));
     }
 
 }

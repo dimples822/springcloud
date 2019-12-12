@@ -1,7 +1,7 @@
 package com.dimples.auth.feign;
 
 import com.dimples.auth.fallback.SysFeignServiceFallBackImpl;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 import com.dimples.common.vo.PermissionVo;
 import com.dimples.common.vo.RoleVo;
 import com.dimples.common.vo.UserVo;
@@ -26,7 +26,7 @@ public interface SysFeignService {
      * @return 用户信息
      */
     @GetMapping("user/{username}")
-    ResultCommon<UserVo> findByUsername(@PathVariable("username") String username);
+    R<UserVo> findByUsername(@PathVariable("username") String username);
 
     /**
      * 根据用户id查询用户角色信息
@@ -35,7 +35,7 @@ public interface SysFeignService {
      * @return 角色信息
      */
     @GetMapping("role/{userId}")
-    ResultCommon<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Long userId);
+    R<List<RoleVo>> getRoleByUserId(@PathVariable("userId") Long userId);
 
     /**
      * 根据角色id查询权限信息
@@ -44,7 +44,7 @@ public interface SysFeignService {
      * @return 权限信息
      */
     @GetMapping("perms/{roleId}")
-    ResultCommon<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Long roleId);
+    R<List<PermissionVo>> getRolePermission(@PathVariable("roleId") Long roleId);
 
 }
 

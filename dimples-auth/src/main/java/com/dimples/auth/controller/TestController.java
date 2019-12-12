@@ -1,7 +1,7 @@
 package com.dimples.auth.controller;
 
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,9 +29,9 @@ public class TestController {
     private UserDetailsServiceImpl userDetailsService;
 
     @GetMapping("/auth/user")
-    public ResultCommon<UserDetails> getAuth() {
+    public R<UserDetails> getAuth() {
         UserDetails admin = userDetailsService.loadUserByUsername("admin");
-        return new ResultCommon<UserDetails>().ok(admin);
+        return new R<UserDetails>().ok(admin);
     }
 }
 

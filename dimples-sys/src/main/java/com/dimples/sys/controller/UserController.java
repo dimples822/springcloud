@@ -3,7 +3,7 @@ package com.dimples.sys.controller;
 import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.exception.BizException;
-import com.dimples.common.result.ResultCommon;
+import com.dimples.common.result.R;
 import com.dimples.common.vo.UserVo;
 import com.dimples.sys.po.User;
 import com.dimples.sys.service.RoleUserService;
@@ -45,31 +45,31 @@ public class UserController {
     @ApiOperation("添加用户")
     @OpsLog(value = "添加用户", type = OpsLogTypeEnum.ADD)
     @PostMapping("/add")
-    public ResultCommon add(User user) {
+    public R add(User user) {
         try {
             userService.insertSelective(user);
         } catch (Exception e) {
             throw new BizException(e.getMessage());
         }
-        return ResultCommon.success();
+        return R.success();
     }
 
     @ApiOperation("绑定用户和角色(一个或多个)之间的关系,用','分隔")
     @OpsLog(value = "绑定用户和角色(一个或多个)之间的关系", type = OpsLogTypeEnum.ADD)
     @PostMapping("/bind/role")
-    public ResultCommon bindUserAndRole(Long userId, String roleIds) {
+    public R bindUserAndRole(Long userId, String roleIds) {
         int i = roleUserService.bingUserAndRole(userId, roleIds);
-        return i > 0 ? ResultCommon.success() : ResultCommon.failed();
+        return i > 0 ? R.success() : R.failed();
     }
 
     @ApiOperation("根据用户名查询用户")
     @ApiImplicitParam(value = "用户名", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户名查询用户", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{username}")
-    public ResultCommon<UserVo> findByUsername(@PathVariable("username") String username) {
+    public R<UserVo> findByUsername(@PathVariable("username") String username) {
         User users = userService.findByName(username);
         UserVo userVo = User.convert(users);
-        return new ResultCommon<UserVo>().ok(userVo);
+        return new R<UserVo>().ok(userVo);
     }
 }
 
