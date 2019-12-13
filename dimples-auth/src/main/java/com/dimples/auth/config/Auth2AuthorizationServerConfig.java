@@ -70,7 +70,6 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     /**
      * 客户端相关配置
      * 配置令牌的存储位置等
-     * 未加密的secret为：clientSecret
      *
      * @param clients ClientDetailsServiceConfigurer
      * @throws Exception Exception

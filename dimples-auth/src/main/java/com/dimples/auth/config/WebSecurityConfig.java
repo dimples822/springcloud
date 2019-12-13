@@ -30,6 +30,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
 
     /**
+     * 授权认证管理者实例化
+     * 重要
+     *
+     * @return AuthenticationManager
+     * @throws Exception Exception
+     */
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    /**
      * 配置基本权限
      * 拦截所有请求路径都被权限进行拦截
      *
@@ -48,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 认证管理配置
-     * 未加密的密码为：123456
+     * 连接数据查询用户信息，与数据库中密码比对
      *
      * @param auth AuthenticationManagerBuilder
      * @throws Exception Exception
@@ -56,18 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    /**
-     * 授权认证管理者实例化
-     *
-     * @return AuthenticationManager
-     * @throws Exception Exception
-     */
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 
     /**
