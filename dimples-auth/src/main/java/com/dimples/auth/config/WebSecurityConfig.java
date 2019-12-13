@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 授权认证管理者实例化
      * 重要
+     * 密码模式需要使用到这个Bean
      *
      * @return AuthenticationManager
      * @throws Exception Exception
