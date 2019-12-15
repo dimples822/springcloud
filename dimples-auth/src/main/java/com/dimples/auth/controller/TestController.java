@@ -1,15 +1,19 @@
 package com.dimples.auth.controller;
 
-import com.dimples.auth.service.impl.UserDetailsServiceImpl;
+import com.dimples.common.exception.BizException;
 import com.dimples.common.result.R;
 
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,17 +25,34 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @Slf4j
-@RefreshScope
 @RequestMapping("/test")
 public class TestController {
 
-    @Resource
-    private UserDetailsServiceImpl userDetailsService;
+    private ConsumerTokenServices consumerTokenServices;
 
-    @GetMapping("/auth/user")
-    public R<UserDetails> getAuth() {
-        UserDetails admin = userDetailsService.loadUserByUsername("admin");
-        return new R<UserDetails>().ok(admin);
+    @Autowired
+    public TestController(ConsumerTokenServices consumerTokenServices) {
+        this.consumerTokenServices = consumerTokenServices;
+    }
+
+    @GetMapping("/oauth/test")
+    public String testOauth() {
+        return "oauth";
+    }
+
+    @GetMapping("/user")
+    public Principal currentUser(Principal principal) {
+        return principal;
+    }
+
+    @DeleteMapping("/logout")
+    public R logout(HttpServletRequest request) {
+        String authorization = request.getHeader("Authorization");
+        String token = StringUtils.replace(authorization, "bearer ", "");
+        if (!consumerTokenServices.revokeToken(token)) {
+            throw new BizException("退出登录失败");
+        }
+        return R.error("退出登录成功");
     }
 }
 

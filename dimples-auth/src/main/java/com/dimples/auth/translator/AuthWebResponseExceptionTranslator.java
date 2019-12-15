@@ -31,30 +31,30 @@ public class AuthWebResponseExceptionTranslator implements WebResponseExceptionT
         log.info(message, e);
         if (e instanceof UnsupportedGrantTypeException) {
             message = "不支持该认证类型";
-            return status.body(R.error(message));
+            return status.body(R.error(message + ":" + e.getMessage()));
         }
         if (e instanceof InvalidTokenException
                 && StringUtils.containsIgnoreCase(e.getMessage(), "Invalid refresh token (expired)")) {
             message = "刷新令牌已过期，请重新登录";
-            return status.body(R.error(message));
+            return status.body(R.error(message + ":" + e.getMessage()));
         }
         if (e instanceof InvalidScopeException) {
             message = "不是有效的scope值";
-            return status.body(R.error(message));
+            return status.body(R.error(message + ":" + e.getMessage()));
         }
         if (e instanceof InvalidGrantException) {
             if (StringUtils.containsIgnoreCase(e.getMessage(), "Invalid refresh token")) {
                 message = "refresh token无效";
-                return status.body(R.error(message));
+                return status.body(R.error(message + ":" + e.getMessage()));
             }
             if (StringUtils.containsIgnoreCase(e.getMessage(), "locked")) {
                 message = "用户已被锁定，请联系管理员";
-                return status.body(R.error(message));
+                return status.body(R.error(message + ":" + e.getMessage()));
             }
             message = "用户名或密码错误";
-            return status.body(R.error(message));
+            return status.body(R.error(message + ":" + e.getMessage()));
         }
-        return status.body(R.error(message));
+        return status.body(R.error(message + ":" + e.getMessage()));
     }
 
 }

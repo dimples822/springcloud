@@ -1,15 +1,18 @@
 package com.dimples.auth.config;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 /**
  * 资源服务器
@@ -46,14 +49,14 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        ClassPathResource classPathResource = new ClassPathResource("public.txt");
+        Resource resource = new ClassPathResource("public.txt");
         String publicKey;
-        try {
-            publicKey = IOUtils.toString(classPathResource.getInputStream());
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
+            publicKey = bufferedReader.lines().collect(Collectors.joining("\n"));
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }
-        converter.setVerifierKey(publicKey);
+        converter.setSigningKey(publicKey);
         return converter;
     }
 
