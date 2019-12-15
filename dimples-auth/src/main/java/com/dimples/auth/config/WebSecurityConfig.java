@@ -4,6 +4,7 @@ import com.dimples.auth.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,16 +19,33 @@ import javax.annotation.Resource;
 /**
  * SpringSecurity安全认证配置类
  * 配置security的授权信息
+ * Order(2)的作用：
+ * 由于ResourceServerConfigurerAdapter的过滤器的顺序是Order(3)，
+ * 为了让请求'/oauth/**'的路径先让WebSecurityConfigurerAdapter处理，所以需指定其生效顺序
+ * 除此之外的其它请求统一交给资源服务器配置处理
  *
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/5
  */
+@Order(2)
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private UserDetailsServiceImpl userDetailsService;
+
+    /**
+     * 密码加密方式
+     * 采用BCryptPasswordEncoder加密方式
+     *
+     * @return PasswordEncoder
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     /**
      * 授权认证管理者实例化
@@ -46,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 配置基本权限
      * 拦截所有请求路径都被权限进行拦截
+     * 指定了该安全配置类只对/oauth/开头的请求有效
      *
      * @param http HttpSecurity
      * @throws Exception Exception
@@ -54,8 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.requestMatchers().antMatchers("/oauth/**")
                 .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
+                .authorizeRequests().antMatchers("/oauth/**").authenticated()
                 .and()
                 .csrf().disable();
     }
@@ -70,17 +88,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    /**
-     * 密码加密方式
-     * 采用BCryptPasswordEncoder加密方式
-     *
-     * @return PasswordEncoder
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Override
