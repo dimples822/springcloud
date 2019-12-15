@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String SECURITY_ALL_UTL = "/**";
+
     private AuthAccessDeniedHandler accessDeniedHandler;
     private AuthExceptionEntryPoint exceptionEntryPoint;
-
     @Autowired
     public Auth2ResourceServerConfig(AuthAccessDeniedHandler accessDeniedHandler, AuthExceptionEntryPoint exceptionEntryPoint) {
         this.accessDeniedHandler = accessDeniedHandler;
@@ -69,7 +69,7 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
-        converter.setSigningKey(publicKey);
+        converter.setVerifierKey(publicKey);
         return converter;
     }
 
