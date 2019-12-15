@@ -61,6 +61,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>${commons-fileupload.version}</version>
 		</dependency>
+		<!-- HttpServletRequest操作类 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-core</artifactId>

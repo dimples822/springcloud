@@ -1,6 +1,6 @@
 package com.dimples.auth.feign;
 
-import com.dimples.auth.fallback.SysFeignServiceFallBackImpl;
+import com.dimples.auth.feign.fallback.SysFeignServiceFallBackImpl;
 import com.dimples.common.result.R;
 import com.dimples.common.vo.PermissionVo;
 import com.dimples.common.vo.RoleVo;

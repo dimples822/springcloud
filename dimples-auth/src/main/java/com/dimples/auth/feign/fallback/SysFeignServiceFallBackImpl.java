@@ -1,4 +1,4 @@
-package com.dimples.auth.fallback;
+package com.dimples.auth.feign.fallback;
 
 import com.dimples.auth.feign.SysFeignService;
 import com.dimples.common.exception.BizException;
