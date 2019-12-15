@@ -1,4 +1,4 @@
-package com.dimples.auth.service.impl;
+package com.dimples.common.helper;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class RedisUtilService {
+public class RedisHelper {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;

@@ -1,6 +1,7 @@
 package com.dimples.auth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dimples.common.helper.RedisHelper;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
 
     @Resource
-    private RedisUtilService redisService;
+    private RedisHelper redisHelper;
 
     /**
      * 缓存 client的 redis key，这里是 hash结构存储
@@ -40,7 +41,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws InvalidClientException {
         ClientDetails clientDetails;
-        String value = (String) redisService.hget(CACHE_CLIENT_KEY, clientId);
+        String value = (String) redisHelper.hget(CACHE_CLIENT_KEY, clientId);
         if (StringUtils.isBlank(value)) {
             clientDetails = cacheAndGetClient(clientId);
         } else {
@@ -59,7 +60,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
         ClientDetails clientDetails;
         clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {
-            redisService.hset(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
+            redisHelper.hset(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
         }
         return clientDetails;
     }
@@ -70,14 +71,14 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
      * @param clientId clientId
      */
     public void removeRedisCache(String clientId) {
-        redisService.hdel(CACHE_CLIENT_KEY, clientId);
+        redisHelper.hdel(CACHE_CLIENT_KEY, clientId);
     }
 
     /**
      * 将 oauth_client_details全表刷入 redis
      */
     public void loadAllClientToCache() {
-        if (redisService.hasKey(CACHE_CLIENT_KEY)) {
+        if (redisHelper.hasKey(CACHE_CLIENT_KEY)) {
             return;
         }
         log.info("将oauth_client_details全表刷入redis");
@@ -87,7 +88,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
             log.error("oauth_client_details表数据为空，请检查");
             return;
         }
-        list.forEach(client -> redisService.hset(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
+        list.forEach(client -> redisHelper.hset(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
     }
 
 }
