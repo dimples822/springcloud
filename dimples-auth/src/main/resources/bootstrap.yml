@@ -1,6 +1,8 @@
 server:
   port: 7000
 spring:
+  application:
+    name: dimples-auth
   profiles:
     active: dev
   cloud:
