@@ -1,5 +1,6 @@
 package com.dimples.auth.handler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dimples.common.result.R;
 
 import org.springframework.http.MediaType;
@@ -20,9 +21,8 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        R.makeResponse(
-                response, MediaType.APPLICATION_JSON_VALUE,
-                HttpServletResponse.SC_UNAUTHORIZED, R.error("token无效")
-        );
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getOutputStream().write(JSONObject.toJSONString(R.error("token无效")).getBytes());
     }
 }

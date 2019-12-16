@@ -48,7 +48,12 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable()
                 .requestMatchers().antMatchers(SECURITY_ALL_UTL)
                 .and()
-                .authorizeRequests().antMatchers(SECURITY_ALL_UTL).authenticated()
+                // 授权配置
+                .authorizeRequests()
+                // 所有请求：/**
+                .antMatchers(SECURITY_ALL_UTL)
+                // 都需要认证
+                .authenticated()
                 .and().httpBasic();
     }
 
