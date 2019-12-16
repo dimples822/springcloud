@@ -1,6 +1,5 @@
 package com.dimples.auth.config;
 
-import com.dimples.auth.properties.AuthProperties;
 import com.dimples.auth.service.impl.RedisClientDetailsServiceImpl;
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;
 import com.dimples.auth.translator.AuthWebResponseExceptionTranslator;
@@ -43,8 +42,6 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
 
     @Resource
     private AuthenticationManager authenticationManager;
-    @Resource
-    private AuthProperties properties;
     @Resource
     private UserDetailsServiceImpl userDetailsService;
     @Resource
@@ -159,9 +156,6 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
     @Bean
     public ResourceOwnerPasswordTokenGranter resourceOwnerPasswordTokenGranter(AuthenticationManager authenticationManager, OAuth2RequestFactory oAuth2RequestFactory) {
         DefaultTokenServices defaultTokenServices = defaultTokenServices();
-        if (properties.getEnableJwt()) {
-            defaultTokenServices.setTokenEnhancer(jwtAccessTokenConverter());
-        }
         return new ResourceOwnerPasswordTokenGranter(authenticationManager, defaultTokenServices, redisClientDetailsService, oAuth2RequestFactory);
     }
 

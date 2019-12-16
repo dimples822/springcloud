@@ -1,10 +1,6 @@
 package com.dimples.auth.config;
 
-import com.dimples.auth.handler.AuthAccessDeniedHandler;
-import com.dimples.auth.handler.AuthExceptionEntryPoint;
-
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -12,7 +8,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 /**
@@ -28,14 +23,6 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String SECURITY_ALL_UTL = "/**";
 
-    private AuthAccessDeniedHandler accessDeniedHandler;
-    private AuthExceptionEntryPoint exceptionEntryPoint;
-
-    @Autowired
-    public Auth2ResourceServerConfig(AuthAccessDeniedHandler accessDeniedHandler, AuthExceptionEntryPoint exceptionEntryPoint) {
-        this.accessDeniedHandler = accessDeniedHandler;
-        this.exceptionEntryPoint = exceptionEntryPoint;
-    }
 
     /**
      * requestMatchers().antMatchers("/**")的配置表明该安全配置对所有请求都生效
@@ -74,12 +61,6 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
         }
         converter.setVerifierKey(publicKey);
         return converter;
-    }
-
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.authenticationEntryPoint(exceptionEntryPoint)
-                .accessDeniedHandler(accessDeniedHandler);
     }
 
 }
