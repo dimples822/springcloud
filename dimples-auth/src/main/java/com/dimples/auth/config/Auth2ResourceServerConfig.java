@@ -3,6 +3,7 @@ package com.dimples.auth.config;
 import com.dimples.auth.handler.AuthAccessDeniedHandler;
 import com.dimples.auth.handler.AuthExceptionEntryPoint;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 /**
  * 资源服务器
@@ -33,6 +30,7 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private AuthAccessDeniedHandler accessDeniedHandler;
     private AuthExceptionEntryPoint exceptionEntryPoint;
+
     @Autowired
     public Auth2ResourceServerConfig(AuthAccessDeniedHandler accessDeniedHandler, AuthExceptionEntryPoint exceptionEntryPoint) {
         this.accessDeniedHandler = accessDeniedHandler;
@@ -64,8 +62,8 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         Resource resource = new ClassPathResource("public.txt");
         String publicKey;
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
-            publicKey = bufferedReader.lines().collect(Collectors.joining("\n"));
+        try {
+            publicKey = IOUtils.toString(resource.getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
