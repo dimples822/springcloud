@@ -58,6 +58,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
      */
     private ClientDetails cacheAndGetClient(String clientId) {
         ClientDetails clientDetails;
+        // 查询数据库中的client-id和secret
         clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {
             redisHelper.hset(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));

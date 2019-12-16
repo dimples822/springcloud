@@ -24,11 +24,6 @@
 			<artifactId>dimples-common</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- start-web -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 		<!-- nacos 服务注册 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

@@ -92,11 +92,11 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
                 .tokenStore(tokenStore())
                 // 配置权限管理
                 .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService)
                 // 配置access_token使用的转换
                 .accessTokenConverter(jwtAccessTokenConverter())
                 // 配置异常翻译
-                .exceptionTranslator(exceptionTranslator)
-                .userDetailsService(userDetailsService);
+                .exceptionTranslator(exceptionTranslator);
     }
 
     /**
