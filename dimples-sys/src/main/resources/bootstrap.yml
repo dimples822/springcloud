@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: dimples-sys
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        group: DEFAULT_GROUP
+        prefix: dimples-sys
+        file-extension: yaml
+        server-addr: 139.9.220.155:8848
+      discovery:
+        server-addr: 139.9.220.155:8848
