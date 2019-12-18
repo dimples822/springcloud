@@ -2,7 +2,7 @@ package com.dimples.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019/8/13
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableZuulProxy
-@EnableEurekaClient
 @Slf4j
-public class ZuulGatewayApplication {
+public class ZuulApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZuulGatewayApplication.class, args);
+        SpringApplication.run(ZuulApplication.class, args);
         log.info("*****************Zuul 程序已启动******************");
     }
 
