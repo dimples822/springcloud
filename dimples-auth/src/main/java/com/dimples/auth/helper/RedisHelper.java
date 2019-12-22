@@ -1,4 +1,4 @@
-package com.dimples.common.helper;
+package com.dimples.auth.helper;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
