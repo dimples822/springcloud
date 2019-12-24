@@ -1,6 +1,6 @@
-package com.dimples.common.config;
+package com.dimples.auth.config;
 
-import com.dimples.common.helper.RedisHelper;
+import com.dimples.auth.helper.RedisHelper;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
