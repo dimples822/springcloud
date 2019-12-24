@@ -3,20 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<!-- 全局变量 -->
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
-		<spring-cloud-alibaba.version>0.2.2.RELEASE</spring-cloud-alibaba.version>
-		<dimples.project.version>1.0.0</dimples.project.version>
-	</properties>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.0.RELEASE</version>
-		<relativePath />
-	</parent>
 
 	<modules>
 		<module>./dimples-auth</module>
@@ -29,24 +15,22 @@
 	<groupId>com.dimples</groupId>
 	<artifactId>dimples-cloud</artifactId>
 	<version>1.0.0</version>
-
 	<packaging>pom</packaging>
 
-	<dependencies>
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
 
-		<!-- Spring Boot 测试 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<!-- 全局变量 -->
+	<properties>
+		<java.version>1.8</java.version>
+		<dimples.project.version>1.0.0</dimples.project.version>
+		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+		<com-alibaba-cloud.version>2.1.1.RELEASE</com-alibaba-cloud.version>
+	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -57,11 +41,10 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- 使用alibaba的开源cloud组件时加入 -->
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
+				<groupId>com.alibaba.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
-				<version>${spring-cloud-alibaba.version}</version>
+				<version>${com-alibaba-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
