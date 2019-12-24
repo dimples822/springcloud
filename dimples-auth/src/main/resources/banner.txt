@@ -4,4 +4,4 @@
 \ `-' ||  ||  |  |  || '-' '|  |\   --..-'  `)      \ '-'  |'  ''  '  |  |  |  | |  |
  `---' `--'`--`--`--'|  |-' `--' `----'`----'        `--`--' `----'   `--'  `--' `--'
                      `--'
-by banner:soft
+${spring.application.name}  Spring-Boot: ${spring-boot.version} by banner-text:soft
