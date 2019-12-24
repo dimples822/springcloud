@@ -1,7 +1,7 @@
 package com.dimples.auth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dimples.common.helper.RedisHelper;
+import com.dimples.auth.helper.RedisHelper;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
