@@ -1,7 +1,11 @@
 package com.dimples.auth.mapper;
 
 import com.dimples.auth.po.Permission;
+import com.dimples.common.dto.PermissionDTO;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface PermissionMapper {
@@ -16,4 +20,6 @@ public interface PermissionMapper {
     int updateByPrimaryKeySelective(Permission record);
 
     int updateByPrimaryKey(Permission record);
+
+    List<PermissionDTO> getRolePermission(Long roleId);
 }

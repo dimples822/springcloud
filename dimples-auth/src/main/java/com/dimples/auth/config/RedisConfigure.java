@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,7 +20,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/15
  */
-@Configuration
+//@Configuration
 public class RedisConfigure {
 
     @Bean

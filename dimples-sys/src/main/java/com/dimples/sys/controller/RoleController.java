@@ -4,7 +4,7 @@ import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.result.R;
-import com.dimples.common.vo.RoleVo;
+import com.dimples.common.dto.RoleDTO;
 import com.dimples.sys.po.Role;
 import com.dimples.sys.service.PermissionRoleService;
 import com.dimples.sys.service.RoleService;
@@ -76,14 +76,14 @@ public class RoleController {
     @ApiImplicitParam(value = "用户id", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户id获取角色信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{userId}")
-    public R<List<RoleVo>> getRoleByUserId(@PathVariable Integer userId) {
+    public R<List<RoleDTO>> getRoleByUserId(@PathVariable Integer userId) {
         List<Role> roles = roleService.getRoleByUserId(userId);
-        List<RoleVo> roleVos = new ArrayList<>();
+        List<RoleDTO> roleDTOS = new ArrayList<>();
         roles.forEach(role -> {
-            RoleVo roleVo = Role.convert(role);
-            roleVos.add(roleVo);
+            RoleDTO roleDTO = Role.convert(role);
+            roleDTOS.add(roleDTO);
         });
-        return new R<List<RoleVo>>().ok(roleVos);
+        return new R<List<RoleDTO>>().ok(roleDTOS);
     }
 
 }

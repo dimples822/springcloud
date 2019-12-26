@@ -1,4 +1,4 @@
-package com.dimples.common.vo;
+package com.dimples.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoleVo implements Serializable {
+public class RoleDTO implements Serializable {
     private static final long serialVersionUID = 2179037393108205286L;
     private Long roleId;
 

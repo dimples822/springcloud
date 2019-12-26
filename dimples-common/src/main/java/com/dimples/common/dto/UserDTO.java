@@ -1,4 +1,4 @@
-package com.dimples.common.vo;
+package com.dimples.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserVo implements Serializable {
+public class UserDTO implements Serializable {
     private static final long serialVersionUID = 3881610071550902762L;
 
     private Long userId;

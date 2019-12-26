@@ -1,4 +1,4 @@
-package com.dimples.common.vo;
+package com.dimples.common.dto;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import lombok.Data;
   * @date 2019/12/8
   */
 @Data
-public class PermissionVo {
+public class PermissionDTO {
     public static final String TYPE_MENU = "menu";
     public static final String TYPE_BUTTON = "button";
     public static final String TYPE_DATA = "data";

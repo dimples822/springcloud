@@ -1,9 +1,9 @@
 package com.dimples.sys.controller;
 
 import com.dimples.common.annotation.OpsLog;
+import com.dimples.common.dto.PermissionDTO;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.result.R;
-import com.dimples.common.vo.PermissionVo;
 import com.dimples.sys.po.Permission;
 import com.dimples.sys.service.PermissionService;
 
@@ -52,9 +52,9 @@ public class PermissionController {
     @ApiImplicitParam(value = "角色id", paramType = "path", dataType = "int")
     @OpsLog(value = "根据角色id获取权限信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{roleId}")
-    public R<List<PermissionVo>> getRolePermission(@PathVariable Integer roleId) {
-        List<PermissionVo> permissionVos = permissionService.getRolePermission(roleId);
-        return new R<List<PermissionVo>>().ok(permissionVos);
+    public R<List<PermissionDTO>> getRolePermission(@PathVariable Integer roleId) {
+        List<PermissionDTO> permissionDTOS = permissionService.getRolePermission(roleId);
+        return new R<List<PermissionDTO>>().ok(permissionDTOS);
     }
 }
 

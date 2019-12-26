@@ -1,11 +1,9 @@
 package com.dimples.auth.service.impl;
 
-import com.dimples.auth.feign.SysFeignService;
-import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.result.R;
-import com.dimples.common.vo.PermissionVo;
-import com.dimples.common.vo.RoleVo;
-import com.dimples.common.vo.UserVo;
+import com.dimples.auth.service.SysUserService;
+import com.dimples.common.dto.PermissionDTO;
+import com.dimples.common.dto.RoleDTO;
+import com.dimples.common.dto.UserDTO;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,12 +28,12 @@ import javax.annotation.Resource;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
-    private SysFeignService sysFeignService;
+    private SysUserService sysUserService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        R<UserVo> userResult = sysFeignService.findByUsername(username);
-        if (userResult.getCode() != CodeAndMessageEnum.SUCCESS.getCode()) {
+        UserDTO userResult = sysUserService.findByUsername(username);
+        if (userResult == null) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -47,26 +45,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final boolean credentialsNonExpired = true;
         // 锁定性 :true:未锁定 false:已锁定
         final boolean accountNonLocked = true;
-        UserVo data = userResult.getData();
-        R<List<RoleVo>> roleResult = sysFeignService.getRoleByUserId(data.getUserId());
-        if (roleResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
-            List<RoleVo> roleVoList = roleResult.getData();
-            for (RoleVo role : roleVoList) {
+        List<RoleDTO> roleResult = sysUserService.getRoleByUserId(userResult.getUserId());
+        if (!roleResult.isEmpty()) {
+            for (RoleDTO role : roleResult) {
                 //角色必须是ROLE_开头，可以在数据库中设置
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRoleName());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
-                R<List<PermissionVo>> perResult = sysFeignService.getRolePermission(role.getRoleId());
-                if (perResult.getCode() == CodeAndMessageEnum.SUCCESS.getCode()) {
-                    List<PermissionVo> permissionList = perResult.getData();
-                    for (PermissionVo menu : permissionList) {
+                List<PermissionDTO> perResult = sysUserService.getRolePermission(role.getRoleId());
+                if (!perResult.isEmpty()) {
+                    for (PermissionDTO menu : perResult) {
                         GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPermission());
                         grantedAuthorities.add(authority);
                     }
                 }
             }
         }
-        return new User(data.getUsername(), data.getPassword(),
+        return new User(userResult.getUsername(), userResult.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
     }
 }

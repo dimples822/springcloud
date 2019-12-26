@@ -23,6 +23,12 @@
 			<groupId>com.dimples.common</groupId>
 			<artifactId>dimples-common</artifactId>
 			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-openfeign</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- 动态数据源 -->
 		<dependency>

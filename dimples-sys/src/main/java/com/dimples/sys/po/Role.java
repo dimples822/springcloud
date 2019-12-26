@@ -1,6 +1,6 @@
 package com.dimples.sys.po;
 
-import com.dimples.common.vo.RoleVo;
+import com.dimples.common.dto.RoleDTO;
 
 import java.util.Date;
 
@@ -32,13 +32,13 @@ public class Role {
      */
     private Date modifyDate;
 
-    public static RoleVo convert(Role role) {
-        RoleVo roleVo = new RoleVo();
-        roleVo.setRoleId(role.roleId);
-        roleVo.setRoleName(role.getRoleName());
-        roleVo.setCreateTime(role.getCreateDate());
-        roleVo.setUpdateTime(role.getModifyDate());
-        return roleVo;
+    public static RoleDTO convert(Role role) {
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setRoleId(role.roleId);
+        roleDTO.setRoleName(role.getRoleName());
+        roleDTO.setCreateTime(role.getCreateDate());
+        roleDTO.setUpdateTime(role.getModifyDate());
+        return roleDTO;
     }
 }
 

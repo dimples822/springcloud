@@ -4,7 +4,7 @@ import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.result.R;
-import com.dimples.common.vo.UserVo;
+import com.dimples.common.dto.UserDTO;
 import com.dimples.sys.po.User;
 import com.dimples.sys.service.RoleUserService;
 import com.dimples.sys.service.UserService;
@@ -66,10 +66,10 @@ public class UserController {
     @ApiImplicitParam(value = "用户名", paramType = "path", dataType = "int")
     @OpsLog(value = "根据用户名查询用户", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{username}")
-    public R<UserVo> findByUsername(@PathVariable("username") String username) {
+    public R<UserDTO> findByUsername(@PathVariable("username") String username) {
         User users = userService.findByName(username);
-        UserVo userVo = User.convert(users);
-        return new R<UserVo>().ok(userVo);
+        UserDTO userDTO = User.convert(users);
+        return new R<UserDTO>().ok(userDTO);
     }
 }
 

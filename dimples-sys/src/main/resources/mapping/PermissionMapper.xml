@@ -138,7 +138,7 @@
 		u.user_id = #{id,jdbcType=BIGINT}
 	</select>
 
-	<select id="getRolePermission" resultType="com.dimples.common.vo.PermissionVo">
+	<select id="getRolePermission" resultType="com.dimples.common.dto.PermissionDTO">
 		select
 		tp.permission_id, permission_name, permission_url, permission, permission_type, `status`,create_date, modify_date
 		from tb_permission tp
