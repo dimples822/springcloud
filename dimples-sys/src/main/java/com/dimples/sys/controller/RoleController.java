@@ -1,10 +1,8 @@
 package com.dimples.sys.controller;
 
-import com.dimples.common.annotation.OpsLog;
-import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.eunm.OpsLogTypeEnum;
-import com.dimples.common.result.R;
 import com.dimples.common.dto.RoleDTO;
+import com.dimples.common.eunm.CodeAndMessageEnum;
+import com.dimples.common.result.R;
 import com.dimples.sys.po.Role;
 import com.dimples.sys.service.PermissionRoleService;
 import com.dimples.sys.service.RoleService;
@@ -47,7 +45,6 @@ public class RoleController {
     }
 
     @ApiOperation("新增角色")
-    @OpsLog(value = "新增角色", type = OpsLogTypeEnum.ADD)
     @ApiParam(name = "roleName", required = true, type = "String")
     @PostMapping("/add")
     public R add(Role role) {
@@ -59,7 +56,6 @@ public class RoleController {
     }
 
     @ApiOperation("绑定角色与权限(一个或多个)关系,以','分隔")
-    @OpsLog(value = "绑定角色与权限(一个或多个)关系", type = OpsLogTypeEnum.ADD)
     @PostMapping("/bind/perm")
     public R bindRoleAndPermission(Long role, String perms) {
         int i = permissionRoleService.bindRoleAndPermission(role, perms);
@@ -74,7 +70,6 @@ public class RoleController {
      */
     @ApiOperation("根据用户id获取角色信息")
     @ApiImplicitParam(value = "用户id", paramType = "path", dataType = "int")
-    @OpsLog(value = "根据用户id获取角色信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{userId}")
     public R<List<RoleDTO>> getRoleByUserId(@PathVariable Integer userId) {
         List<Role> roles = roleService.getRoleByUserId(userId);

@@ -1,7 +1,9 @@
-package com.dimples.common.aspect;
+package com.dimples.auth.aspect;
 
 import com.dimples.common.annotation.OpsLog;
+import com.dimples.common.aspect.BaseAspectSupport;
 import com.dimples.common.eunm.OpsLogTypeEnum;
+import com.dimples.common.exception.BizException;
 import com.dimples.common.utils.HttpContextUtil;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -36,16 +38,13 @@ public class OpsLogAspect extends BaseAspectSupport {
 
     @Around("opsLogAnnotation()")
     public Object recordSysLog(ProceedingJoinPoint point) throws Throwable {
-
         // 先执行业务
         Object result = point.proceed();
-
         try {
-            handle(point);
+            handleLog(point);
         } catch (Exception e) {
-            log.error("日志记录出错!", e);
+            throw new BizException("日志记录出错",e);
         }
-
         return result;
     }
 
@@ -56,7 +55,7 @@ public class OpsLogAspect extends BaseAspectSupport {
      *
      * @param point ProceedingJoinPoint
      */
-    private void handle(ProceedingJoinPoint point) {
+    private void handleLog(ProceedingJoinPoint point) {
         Method currentMethod = resolveMethod(point);
         String methodName = currentMethod.getName();
         // 获取注解中的内容

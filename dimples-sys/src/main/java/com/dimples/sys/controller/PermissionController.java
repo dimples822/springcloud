@@ -1,8 +1,6 @@
 package com.dimples.sys.controller;
 
-import com.dimples.common.annotation.OpsLog;
 import com.dimples.common.dto.PermissionDTO;
-import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.result.R;
 import com.dimples.sys.po.Permission;
 import com.dimples.sys.service.PermissionService;
@@ -41,7 +39,6 @@ public class PermissionController {
     }
 
     @ApiOperation("新增权限")
-    @OpsLog(value = "新增权限", type = OpsLogTypeEnum.ADD)
     @PostMapping("/add")
     public R add(Permission permission) {
         int i = permissionService.insertSelective(permission);
@@ -50,7 +47,6 @@ public class PermissionController {
 
     @ApiOperation("根据角色id获取权限信息")
     @ApiImplicitParam(value = "角色id", paramType = "path", dataType = "int")
-    @OpsLog(value = "根据角色id获取权限信息", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{roleId}")
     public R<List<PermissionDTO>> getRolePermission(@PathVariable Integer roleId) {
         List<PermissionDTO> permissionDTOS = permissionService.getRolePermission(roleId);

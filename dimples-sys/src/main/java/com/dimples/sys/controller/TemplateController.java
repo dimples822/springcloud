@@ -1,7 +1,5 @@
 package com.dimples.sys.controller;
 
-import com.dimples.common.annotation.OpsLog;
-import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.result.R;
 import com.dimples.sys.po.Template;
 import com.dimples.sys.service.TemplateService;
@@ -37,7 +35,6 @@ public class TemplateController {
     private TemplateUserService templateUserService;
 
     @ApiOperation("新增用户模板")
-    @OpsLog(value = "新增用户模板", type = OpsLogTypeEnum.ADD)
     @PostMapping("/add")
     public R add(Template template) {
         templateService.insertSelective(template);
@@ -54,7 +51,6 @@ public class TemplateController {
      * @return R
      */
     @ApiOperation("用户新增模板并绑定")
-    @OpsLog(value = "用户新增模板并绑定", type = OpsLogTypeEnum.ADD)
     @PostMapping("/add/{userId}")
     public R add(Template template, @PathVariable Long userId, @RequestParam(defaultValue = "false") boolean active) {
         int result = templateService.add(template, userId, active);
@@ -62,7 +58,6 @@ public class TemplateController {
     }
 
     @ApiOperation("绑定用户与模板")
-    @OpsLog(value = "绑定用户与模板", type = OpsLogTypeEnum.ADD)
     @PostMapping("/bind/user")
     public R bind(Long templateId, Long userId) {
         int result = templateUserService.bind(templateId, userId);

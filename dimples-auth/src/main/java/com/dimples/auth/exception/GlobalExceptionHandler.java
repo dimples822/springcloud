@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Arrays;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,6 +32,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BizException.class)
     public R bizException(BizException e) {
         log.error("业务异常:" + e.getMessage());
+        log.error(Arrays.toString(e.getStackTrace()));
         return R.error(e.getCode(), e.getMessage());
     }
 
@@ -42,6 +45,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public R exceptionHandler(RuntimeException e) {
         log.error("系统异常:" + e.getMessage());
+        log.error(Arrays.toString(e.getStackTrace()));
         return R.error(CodeAndMessageEnum.SERVER_ERROR.getCode(), CodeAndMessageEnum.SERVER_ERROR.getMessage());
     }
 

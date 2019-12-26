@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/11/23
  */
-abstract class BaseAspectSupport {
+public abstract class BaseAspectSupport {
 
     /**
      * 处理方法
@@ -20,7 +20,7 @@ abstract class BaseAspectSupport {
      * @param point ProceedingJoinPoint
      * @return Method
      */
-    Method resolveMethod(ProceedingJoinPoint point) {
+    protected Method resolveMethod(ProceedingJoinPoint point) {
         MethodSignature methodSignature;
         Signature signature = point.getSignature();
         if (!(signature instanceof MethodSignature)) {

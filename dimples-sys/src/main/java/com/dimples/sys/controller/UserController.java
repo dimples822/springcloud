@@ -1,10 +1,8 @@
 package com.dimples.sys.controller;
 
-import com.dimples.common.annotation.OpsLog;
-import com.dimples.common.eunm.OpsLogTypeEnum;
+import com.dimples.common.dto.UserDTO;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.result.R;
-import com.dimples.common.dto.UserDTO;
 import com.dimples.sys.po.User;
 import com.dimples.sys.service.RoleUserService;
 import com.dimples.sys.service.UserService;
@@ -43,7 +41,6 @@ public class UserController {
     }
 
     @ApiOperation("添加用户")
-    @OpsLog(value = "添加用户", type = OpsLogTypeEnum.ADD)
     @PostMapping("/add")
     public R add(User user) {
         try {
@@ -55,7 +52,6 @@ public class UserController {
     }
 
     @ApiOperation("绑定用户和角色(一个或多个)之间的关系,用','分隔")
-    @OpsLog(value = "绑定用户和角色(一个或多个)之间的关系", type = OpsLogTypeEnum.ADD)
     @PostMapping("/bind/role")
     public R bindUserAndRole(Long userId, String roleIds) {
         int i = roleUserService.bingUserAndRole(userId, roleIds);
@@ -64,7 +60,6 @@ public class UserController {
 
     @ApiOperation("根据用户名查询用户")
     @ApiImplicitParam(value = "用户名", paramType = "path", dataType = "int")
-    @OpsLog(value = "根据用户名查询用户", type = OpsLogTypeEnum.SELECT)
     @GetMapping("/{username}")
     public R<UserDTO> findByUsername(@PathVariable("username") String username) {
         User users = userService.findByName(username);
