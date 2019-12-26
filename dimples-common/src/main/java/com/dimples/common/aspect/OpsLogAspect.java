@@ -1,7 +1,6 @@
-package com.dimples.auth.aspect;
+package com.dimples.common.aspect;
 
 import com.dimples.common.annotation.OpsLog;
-import com.dimples.common.aspect.BaseAspectSupport;
 import com.dimples.common.eunm.OpsLogTypeEnum;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.utils.HttpContextUtil;
