@@ -50,7 +50,7 @@ public enum CodeAndMessageEnum {
     // 没有此用户
     USER_NOT_EXISTED(400, "没有此用户"),
     // 账号被冻结
-    ACCOUNT_FREEZED(401, "账号被冻结"),
+    ACCOUNT_FREEZE(401, "账号被冻结"),
     // 原密码不正确
     OLD_PWD_NOT_RIGHT(402, "原密码不正确"),
     // 两次输入密码不一致
@@ -66,7 +66,7 @@ public enum CodeAndMessageEnum {
     // 会话超时
     SESSION_TIMEOUT(400, "会话超时"),
     // 服务器异常
-    SERVER_ERROR(500, "服务器异常"),
+    SERVER_ERROR(500, "服务器异常,请联系管理员"),
     /**
      * 操作成功
      */
@@ -89,17 +89,24 @@ public enum CodeAndMessageEnum {
      */
     UNAUTHORIZED(401, "身份验证失败（签名错误）"),
     /**
-     * 没有权限
+     * token无效
      */
-    NOT_FOUND(403, "没有权限"),
+    AUTH_DISABLE(402, "Token无效,请获取正确的Token"),
     /**
      * 找不到资源
      */
-    NOT_AUTH(404, "找不到资源"),
+    NOT_FOUND(404, "找不到资源"),
+    /**
+     * 没有权限
+     */
+    NOT_AUTH(403, "没有权限访问该资源"),
+
+
     /**
      * 请求中指定的方法不被允许
      */
     METHOD_NOT_ALLOWED(405, "请求中指定的方法不被允许"),
+
     /**
      * 请求头中指定的一些前提条件失败，例如请求参数错误或为空
      */

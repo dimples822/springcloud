@@ -1,5 +1,7 @@
 package com.dimples.sys;
 
+import com.dimples.common.annotation.EnableAuthExceptionHandler;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/6
  */
+@EnableAuthExceptionHandler
 @Slf4j
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
