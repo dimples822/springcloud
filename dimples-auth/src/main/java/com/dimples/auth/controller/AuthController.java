@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @Slf4j
-public class TestController {
+public class AuthController {
 
     private ConsumerTokenServices consumerTokenServices;
 
     @Autowired
-    public TestController(ConsumerTokenServices consumerTokenServices) {
+    public AuthController(ConsumerTokenServices consumerTokenServices) {
         this.consumerTokenServices = consumerTokenServices;
     }
 
