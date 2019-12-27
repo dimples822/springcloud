@@ -18,7 +18,7 @@
 			<groupId>com.dimples.common</groupId>
 			<artifactId>dimples-common</artifactId>
 			<version>1.0.0</version>
-			<exclusions>
+			<!--<exclusions>
 				<exclusion>
 					<groupId>org.springframework.cloud</groupId>
 					<artifactId>spring-cloud-starter-oauth2</artifactId>
@@ -27,7 +27,7 @@
 					<groupId>org.springframework.cloud</groupId>
 					<artifactId>spring-cloud-starter-security</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions>-->
 		</dependency>
 		<!-- 动态数据源 -->
 		<dependency>

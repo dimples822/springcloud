@@ -12,3 +12,8 @@ spring:
         server-addr: 139.9.220.155:8848
       discovery:
         server-addr: 139.9.220.155:8848
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:7002/auth/user
