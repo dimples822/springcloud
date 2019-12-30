@@ -14,7 +14,7 @@ import java.security.Principal;
 public class SysAuthController {
 
     @GetMapping("info")
-    public String test(){
+    public String info(){
         return "dimples-sys";
     }
 
