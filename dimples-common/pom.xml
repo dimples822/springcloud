@@ -131,7 +131,7 @@
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-alibaba-nacos-config</artifactId>
 		</dependency>
-		<!-- feign -->
+		<!-- openfeign -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
