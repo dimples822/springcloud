@@ -10,6 +10,7 @@
 		<module>./dimples-common</module>
 		<module>./dimples-monitor-admin</module>
 		<module>dimples-sys</module>
+		<module>dimples-server</module>
 	</modules>
 
 	<groupId>com.dimples</groupId>
