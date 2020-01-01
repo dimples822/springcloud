@@ -19,6 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BaseExceptionHandler {
 
+    /**
+     * Exception
+     *
+     * @param e Exception
+     * @return ResponseDTO
+     */
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseDTO handleException(Exception e) {
@@ -26,6 +32,12 @@ public class BaseExceptionHandler {
         return ResponseDTO.failed(CodeAndMessageEnum.SERVER_ERROR);
     }
 
+    /**
+     * BizException
+     *
+     * @param e BizException
+     * @return ResponseDTO
+     */
     @ExceptionHandler(value = BizException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseDTO handleBizException(BizException e) {
@@ -33,6 +45,12 @@ public class BaseExceptionHandler {
         return ResponseDTO.failed(e.getMessage());
     }
 
+    /**
+     * AccessDeniedException
+     *
+     * @param e AccessDeniedException
+     * @return ResponseDTO
+     */
     @ExceptionHandler(value = AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseDTO handleAccessDeniedException() {
