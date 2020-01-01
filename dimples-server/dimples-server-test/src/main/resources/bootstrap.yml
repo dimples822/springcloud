@@ -12,9 +12,6 @@ spring:
         server-addr: 139.9.220.155:8848
       discovery:
         server-addr: 139.9.220.155:8848
-feign:
-  hystrix:
-    enabled: true
 logging:
   level:
     com:
