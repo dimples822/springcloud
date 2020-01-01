@@ -1,6 +1,6 @@
 package com.dimples.sys.controller;
 
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 import com.dimples.sys.po.Template;
 import com.dimples.sys.service.TemplateService;
 import com.dimples.sys.service.TemplateUserService;
@@ -36,9 +36,9 @@ public class TemplateController {
 
     @ApiOperation("新增用户模板")
     @PostMapping("/add")
-    public R add(Template template) {
+    public ResponseDTO add(Template template) {
         templateService.insertSelective(template);
-        return R.success();
+        return ResponseDTO.success();
     }
 
     /**
@@ -48,20 +48,20 @@ public class TemplateController {
      *
      * @param template Template
      * @param userId   Long
-     * @return R
+     * @return ResponseDTO
      */
     @ApiOperation("用户新增模板并绑定")
     @PostMapping("/add/{userId}")
-    public R add(Template template, @PathVariable Long userId, @RequestParam(defaultValue = "false") boolean active) {
+    public ResponseDTO add(Template template, @PathVariable Long userId, @RequestParam(defaultValue = "false") boolean active) {
         int result = templateService.add(template, userId, active);
-        return result > 0 ? R.success() : R.failed();
+        return result > 0 ? ResponseDTO.success() : ResponseDTO.failed();
     }
 
     @ApiOperation("绑定用户与模板")
     @PostMapping("/bind/user")
-    public R bind(Long templateId, Long userId) {
+    public ResponseDTO bind(Long templateId, Long userId) {
         int result = templateUserService.bind(templateId, userId);
-        return result > 0 ? R.success() : R.failed();
+        return result > 0 ? ResponseDTO.success() : ResponseDTO.failed();
     }
 }
 

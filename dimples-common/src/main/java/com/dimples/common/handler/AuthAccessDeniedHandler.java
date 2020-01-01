@@ -1,7 +1,7 @@
 package com.dimples.common.handler;
 
 import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        R.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_FORBIDDEN, R.error(CodeAndMessageEnum.NOT_AUTH));
+        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_FORBIDDEN, ResponseDTO.failed(CodeAndMessageEnum.NOT_AUTH));
     }
 }
 

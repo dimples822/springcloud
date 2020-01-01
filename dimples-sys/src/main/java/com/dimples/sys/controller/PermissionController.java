@@ -1,7 +1,7 @@
 package com.dimples.sys.controller;
 
 import com.dimples.common.dto.PermissionDTO;
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 import com.dimples.sys.po.Permission;
 import com.dimples.sys.service.PermissionService;
 
@@ -40,17 +40,17 @@ public class PermissionController {
 
     @ApiOperation("新增权限")
     @PostMapping("/add")
-    public R add(Permission permission) {
+    public ResponseDTO add(Permission permission) {
         int i = permissionService.insertSelective(permission);
-        return i > 0 ? R.success() : R.failed();
+        return i > 0 ? ResponseDTO.success() : ResponseDTO.failed();
     }
 
     @ApiOperation("根据角色id获取权限信息")
     @ApiImplicitParam(value = "角色id", paramType = "path", dataType = "int")
     @GetMapping("/{roleId}")
-    public R<List<PermissionDTO>> getRolePermission(@PathVariable Integer roleId) {
+    public ResponseDTO<List<PermissionDTO>> getRolePermission(@PathVariable Integer roleId) {
         List<PermissionDTO> permissionDTOS = permissionService.getRolePermission(roleId);
-        return new R<List<PermissionDTO>>().ok(permissionDTOS);
+        return new ResponseDTO<List<PermissionDTO>>().ok(permissionDTOS);
     }
 }
 

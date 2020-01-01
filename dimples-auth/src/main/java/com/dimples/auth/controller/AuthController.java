@@ -1,7 +1,7 @@
 package com.dimples.auth.controller;
 
 import com.dimples.common.exception.BizException;
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +44,13 @@ public class AuthController {
     }
 
     @DeleteMapping("/logout")
-    public R logout(HttpServletRequest request) {
+    public ResponseDTO logout(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
         String token = StringUtils.replace(authorization, "bearer ", "");
         if (!consumerTokenServices.revokeToken(token)) {
             throw new BizException("退出登录失败");
         }
-        return R.error("退出登录成功");
+        return ResponseDTO.failed("退出登录成功");
     }
 }
 

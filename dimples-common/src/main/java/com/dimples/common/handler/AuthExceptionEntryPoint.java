@@ -1,7 +1,7 @@
 package com.dimples.common.handler;
 
 import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -22,7 +22,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        R.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_UNAUTHORIZED, R.error(CodeAndMessageEnum.AUTH_DISABLE));
+        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_UNAUTHORIZED, ResponseDTO.failed(CodeAndMessageEnum.AUTH_DISABLE));
     }
 
 }

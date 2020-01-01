@@ -2,7 +2,7 @@ package com.dimples.sys.controller;
 
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.result.R;
+import com.dimples.common.transport.ResponseDTO;
 import com.dimples.sys.po.Role;
 import com.dimples.sys.service.PermissionRoleService;
 import com.dimples.sys.service.RoleService;
@@ -47,38 +47,38 @@ public class RoleController {
     @ApiOperation("新增角色")
     @ApiParam(name = "roleName", required = true, type = "String")
     @PostMapping("/add")
-    public R add(Role role) {
+    public ResponseDTO add(Role role) {
         if (role.getRoleName().isEmpty()) {
-            return R.failed(CodeAndMessageEnum.FIELD_INCOMPLETE);
+            return ResponseDTO.failed(CodeAndMessageEnum.FIELD_INCOMPLETE);
         }
         int i = roleService.insertSelective(role);
-        return i > 0 ? R.success() : R.failed();
+        return i > 0 ? ResponseDTO.success() : ResponseDTO.failed();
     }
 
     @ApiOperation("绑定角色与权限(一个或多个)关系,以','分隔")
     @PostMapping("/bind/perm")
-    public R bindRoleAndPermission(Long role, String perms) {
+    public ResponseDTO bindRoleAndPermission(Long role, String perms) {
         int i = permissionRoleService.bindRoleAndPermission(role, perms);
-        return i > 0 ? R.success() : R.failed();
+        return i > 0 ? ResponseDTO.success() : ResponseDTO.failed();
     }
 
     /**
      * 根据用户id获取角色信息
      *
      * @param userId Integer
-     * @return R<List < Role>>
+     * @return ResponseDTO<List < Role>>
      */
     @ApiOperation("根据用户id获取角色信息")
     @ApiImplicitParam(value = "用户id", paramType = "path", dataType = "int")
     @GetMapping("/{userId}")
-    public R<List<RoleDTO>> getRoleByUserId(@PathVariable Integer userId) {
+    public ResponseDTO<List<RoleDTO>> getRoleByUserId(@PathVariable Integer userId) {
         List<Role> roles = roleService.getRoleByUserId(userId);
         List<RoleDTO> roleDTOS = new ArrayList<>();
         roles.forEach(role -> {
             RoleDTO roleDTO = Role.convert(role);
             roleDTOS.add(roleDTO);
         });
-        return new R<List<RoleDTO>>().ok(roleDTOS);
+        return new ResponseDTO<List<RoleDTO>>().ok(roleDTOS);
     }
 
 }

@@ -29,7 +29,7 @@ public interface RoleService {
      * 根据用户id获取角色信息
      *
      * @param userId Integer
-     * @return R<List < Role>>
+     * @return ResponseDTO<List < Role>>
      */
     List<Role> getRoleByUserId(Integer userId);
 
