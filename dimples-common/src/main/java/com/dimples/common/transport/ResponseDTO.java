@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -23,7 +22,6 @@ import lombok.ToString;
 @SuppressWarnings("unchecked")
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDTO<T> {
 
