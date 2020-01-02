@@ -27,6 +27,7 @@ public class RedisHelper {
     private RedisTemplate<String, Object> redisTemplate;
 
     /**
+     * =============================common============================
      * 指定缓存失效时间
      *
      * @param key  键
@@ -86,6 +87,7 @@ public class RedisHelper {
     }
 
     /**
+     * ============================String=============================
      * 普通缓存获取
      *
      * @param key 键
@@ -163,6 +165,7 @@ public class RedisHelper {
     }
 
     /**
+     * ================================Map=================================
      * HashGet
      *
      * @param key  键 不能为 null
@@ -229,7 +232,7 @@ public class RedisHelper {
      * @param value 值
      * @return true 成功 false失败
      */
-    public Boolean hset(String key, String item, Object value) {
+    public Boolean hSet(String key, String item, Object value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
@@ -248,7 +251,7 @@ public class RedisHelper {
      * @param time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间
      * @return true 成功 false失败
      */
-    public Boolean hset(String key, String item, Object value, Long time) {
+    public Boolean hSet(String key, String item, Object value, Long time) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
@@ -267,7 +270,7 @@ public class RedisHelper {
      * @param key  键 不能为 null
      * @param item 项 可以使多个不能为 null
      */
-    public void hdel(String key, Object... item) {
+    public void hDel(String key, Object... item) {
         redisTemplate.opsForHash().delete(key, item);
     }
 
@@ -290,7 +293,7 @@ public class RedisHelper {
      * @param by   要增加几(大于0)
      * @return Double
      */
-    public Double hincr(String key, String item, Double by) {
+    public Double hIncr(String key, String item, Double by) {
         return redisTemplate.opsForHash().increment(key, item, by);
     }
 
@@ -302,17 +305,18 @@ public class RedisHelper {
      * @param by   要减少记(小于0)
      * @return Double
      */
-    public Double hdecr(String key, String item, Double by) {
+    public Double hDecr(String key, String item, Double by) {
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
 
     /**
+     * ============================set=============================
      * 根据 key获取 Set中的所有值
      *
      * @param key 键
      * @return Set
      */
-    public Set<Object> sGet(String key) {
+    public Set<Object> gSet(String key) {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
@@ -328,7 +332,7 @@ public class RedisHelper {
      * @param value 值
      * @return true 存在 false不存在
      */
-    public Boolean sHasKey(String key, Object value) {
+    public Boolean setHasKey(String key, Object value) {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
@@ -406,6 +410,7 @@ public class RedisHelper {
     }
 
     /**
+     * ===============================list=================================
      * 获取list缓存的内容
      *
      * @param key   键

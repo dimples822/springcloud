@@ -61,7 +61,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
         // 查询数据库中的client-id和secret
         clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {
-            redisHelper.hset(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
+            Boolean hset = redisHelper.hSet(CACHE_CLIENT_KEY, clientId, JSONObject.toJSONString(clientDetails));
         }
         return clientDetails;
     }
@@ -72,7 +72,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
      * @param clientId clientId
      */
     public void removeRedisCache(String clientId) {
-        redisHelper.hdel(CACHE_CLIENT_KEY, clientId);
+        redisHelper.hDel(CACHE_CLIENT_KEY, clientId);
     }
 
     /**
@@ -89,7 +89,7 @@ public class RedisClientDetailsServiceImpl extends JdbcClientDetailsService {
             log.error("oauth_client_details表数据为空，请检查");
             return;
         }
-        list.forEach(client -> redisHelper.hset(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
+        list.forEach(client -> redisHelper.hSet(CACHE_CLIENT_KEY, client.getClientId(), JSONObject.toJSONString(client)));
     }
 
 }
