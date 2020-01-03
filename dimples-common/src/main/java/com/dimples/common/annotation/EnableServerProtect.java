@@ -1,6 +1,6 @@
 package com.dimples.common.annotation;
 
-import com.dimples.common.config.ServerProtectConfigure;
+import com.dimples.common.configure.ServerProtectConfigure;
 
 import org.springframework.context.annotation.Import;
 

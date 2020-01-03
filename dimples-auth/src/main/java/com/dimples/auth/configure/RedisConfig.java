@@ -1,4 +1,4 @@
-package com.dimples.auth.config;
+package com.dimples.auth.configure;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

@@ -1,4 +1,4 @@
-package com.dimples.sys.config;
+package com.dimples.sys.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

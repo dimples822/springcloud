@@ -1,4 +1,4 @@
-package com.dimples.auth.config;
+package com.dimples.auth.configure;
 
 import com.dimples.auth.service.impl.RedisClientDetailsServiceImpl;
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;

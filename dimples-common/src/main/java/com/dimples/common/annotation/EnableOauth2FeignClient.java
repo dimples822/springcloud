@@ -1,6 +1,6 @@
 package com.dimples.common.annotation;
 
-import com.dimples.common.config.Oauth2FeignConfig;
+import com.dimples.common.configure.Oauth2FeignConfig;
 
 import org.springframework.context.annotation.Import;
 

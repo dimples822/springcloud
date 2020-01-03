@@ -1,6 +1,6 @@
 package com.dimples.common.annotation;
 
-import com.dimples.common.config.AuthExceptionConfigure;
+import com.dimples.common.configure.AuthExceptionConfigure;
 
 import org.springframework.context.annotation.Import;
 

@@ -1,4 +1,4 @@
-package com.dimples.server.test.config;
+package com.dimples.server.test.configure;
 
 import com.dimples.common.handler.AuthAccessDeniedHandler;
 import com.dimples.common.handler.AuthExceptionEntryPoint;

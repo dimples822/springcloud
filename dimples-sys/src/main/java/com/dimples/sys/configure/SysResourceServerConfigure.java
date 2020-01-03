@@ -1,4 +1,4 @@
-package com.dimples.sys.config;
+package com.dimples.sys.configure;
 
 import com.dimples.common.handler.AuthAccessDeniedHandler;
 import com.dimples.common.handler.AuthExceptionEntryPoint;

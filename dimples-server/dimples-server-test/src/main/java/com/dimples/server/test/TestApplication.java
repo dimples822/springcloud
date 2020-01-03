@@ -2,6 +2,7 @@ package com.dimples.server.test;
 
 import com.dimples.common.annotation.EnableAuthExceptionHandler;
 import com.dimples.common.annotation.EnableOauth2FeignClient;
+import com.dimples.common.annotation.EnableServerProtect;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @EnableAuthExceptionHandler
 @EnableOauth2FeignClient
+@EnableServerProtect
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients

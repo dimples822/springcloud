@@ -1,4 +1,4 @@
-package com.dimples.common.config;
+package com.dimples.common.configure;
 
 import com.dimples.common.interceptor.ServerProtectInterceptor;
 
