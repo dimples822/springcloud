@@ -1,7 +1,5 @@
 package com.dimples.sys.mapper;
 
-import com.dimples.sys.po.UserPosition;
-
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,13 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserPositionMapper {
-    int deleteByPrimaryKey(Long userPositionId);
 
-    int insertSelective(UserPosition record);
-
-    UserPosition selectByPrimaryKey(Long userPositionId);
-
-    int updateByPrimaryKeySelective(UserPosition record);
-
-    int updateByPrimaryKey(UserPosition record);
 }

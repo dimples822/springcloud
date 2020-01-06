@@ -1,5 +1,6 @@
 package com.dimples.sys.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dimples.sys.po.Dept;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -10,14 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2019/12/6
  */
 @Mapper
-public interface DeptMapper {
-    int deleteByPrimaryKey(Long deptId);
+public interface DeptMapper extends BaseMapper<Dept> {
 
-    int insertSelective(Dept record);
-
-    Dept selectByPrimaryKey(Long deptId);
-
-    int updateByPrimaryKeySelective(Dept record);
-
-    int updateByPrimaryKey(Dept record);
 }

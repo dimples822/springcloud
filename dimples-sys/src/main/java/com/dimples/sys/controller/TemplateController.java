@@ -2,8 +2,6 @@ package com.dimples.sys.controller;
 
 import com.dimples.common.transport.ResponseDTO;
 import com.dimples.sys.po.Template;
-import com.dimples.sys.service.TemplateService;
-import com.dimples.sys.service.TemplateUserService;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

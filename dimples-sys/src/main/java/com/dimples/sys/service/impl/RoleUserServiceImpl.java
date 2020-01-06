@@ -4,7 +4,6 @@ import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.utils.SysConstant;
 import com.dimples.sys.mapper.RoleUserMapper;
-import com.dimples.sys.po.RoleUser;
 import com.dimples.sys.service.RoleUserService;
 
 import org.springframework.stereotype.Service;
@@ -20,31 +19,6 @@ public class RoleUserServiceImpl implements RoleUserService {
 
     @Resource
     private RoleUserMapper roleUserMapper;
-
-    @Override
-    public int deleteByPrimaryKey(Long id) {
-        return roleUserMapper.deleteByPrimaryKey(id);
-    }
-
-    @Override
-    public int insertSelective(RoleUser record) {
-        return roleUserMapper.insertSelective(record);
-    }
-
-    @Override
-    public RoleUser selectByPrimaryKey(Long id) {
-        return roleUserMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(RoleUser record) {
-        return roleUserMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKey(RoleUser record) {
-        return roleUserMapper.updateByPrimaryKey(record);
-    }
 
     @Transactional(rollbackFor = Exception.class)
     @Override

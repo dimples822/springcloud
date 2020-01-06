@@ -4,18 +4,11 @@ import com.dimples.sys.po.Role;
 
 import java.util.List;
 
+/**
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2020/1/6
+ */
 public interface RoleService {
-
-
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(Role record);
-
-    Role selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
 
     /**
      * 查询用户角色

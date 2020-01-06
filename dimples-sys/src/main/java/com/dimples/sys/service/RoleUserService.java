@@ -1,19 +1,11 @@
 package com.dimples.sys.service;
 
-import com.dimples.sys.po.RoleUser;
-
+/**
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2020/1/6
+  */
 public interface RoleUserService {
-
-
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(RoleUser record);
-
-    RoleUser selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(RoleUser record);
-
-    int updateByPrimaryKey(RoleUser record);
 
     /**
      * 绑定用户和角色关系

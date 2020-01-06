@@ -1,19 +1,11 @@
 package com.dimples.sys.service;
 
-import com.dimples.sys.po.RoleUGroup;
-
+/**
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2020/1/6
+  */
 public interface RoleUGroupService {
-
-
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(RoleUGroup record);
-
-    RoleUGroup selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(RoleUGroup record);
-
-    int updateByPrimaryKey(RoleUGroup record);
 
 }
 

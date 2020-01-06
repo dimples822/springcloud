@@ -1,5 +1,6 @@
 package com.dimples.sys.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dimples.sys.po.RolePosition;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -10,14 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2019/12/6
  */
 @Mapper
-public interface RolePositionMapper {
-    int deleteByPrimaryKey(Long rolePositionId);
+public interface RolePositionMapper extends BaseMapper<RolePosition> {
 
-    int insertSelective(RolePosition record);
-
-    RolePosition selectByPrimaryKey(Long rolePositionId);
-
-    int updateByPrimaryKeySelective(RolePosition record);
-
-    int updateByPrimaryKey(RolePosition record);
 }

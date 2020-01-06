@@ -11,16 +11,6 @@ import java.util.List;
  */
 public interface PermissionService {
 
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(Permission record);
-
-    Permission selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(Permission record);
-
-    int updateByPrimaryKey(Permission record);
-
     /**
      * 查询用户的所有权限
      *

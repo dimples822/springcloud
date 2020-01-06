@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dimples.sys.mapper.RolePositionMapper">
+  <resultMap id="BaseResultMap" type="com.dimples.sys.po.RolePosition">
+    <!--@mbg.generated-->
+    <!--@Table tb_role_position-->
+    <id column="role_position_id" jdbcType="BIGINT" property="rolePositionId" />
+    <result column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_position_id, position_id, role_id
+  </sql>
+
+</mapper>

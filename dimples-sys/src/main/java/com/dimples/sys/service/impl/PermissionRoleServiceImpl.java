@@ -4,7 +4,6 @@ import com.dimples.common.eunm.CodeAndMessageEnum;
 import com.dimples.common.exception.BizException;
 import com.dimples.common.utils.SysConstant;
 import com.dimples.sys.mapper.PermissionRoleMapper;
-import com.dimples.sys.po.PermissionRole;
 import com.dimples.sys.service.PermissionRoleService;
 
 import org.springframework.stereotype.Service;
@@ -24,31 +23,6 @@ public class PermissionRoleServiceImpl implements PermissionRoleService {
 
     @Resource
     private PermissionRoleMapper permissionRoleMapper;
-
-    @Override
-    public int deleteByPrimaryKey(Long id) {
-        return permissionRoleMapper.deleteByPrimaryKey(id);
-    }
-
-    @Override
-    public int insertSelective(PermissionRole record) {
-        return permissionRoleMapper.insertSelective(record);
-    }
-
-    @Override
-    public PermissionRole selectByPrimaryKey(Long id) {
-        return permissionRoleMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(PermissionRole record) {
-        return permissionRoleMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKey(PermissionRole record) {
-        return permissionRoleMapper.updateByPrimaryKey(record);
-    }
 
     @Transactional(rollbackFor = Exception.class)
     @Override

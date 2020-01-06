@@ -1,5 +1,6 @@
 package com.dimples.sys.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dimples.sys.po.UserUGroup;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -9,14 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2019/12/6
  */
 @Mapper
-public interface UserUGroupMapper {
-    int deleteByPrimaryKey(Long userUGroupId);
+public interface UserUGroupMapper extends BaseMapper<UserUGroup> {
 
-    int insertSelective(UserUGroup record);
-
-    UserUGroup selectByPrimaryKey(Long userUGroupId);
-
-    int updateByPrimaryKeySelective(UserUGroup record);
-
-    int updateByPrimaryKey(UserUGroup record);
 }

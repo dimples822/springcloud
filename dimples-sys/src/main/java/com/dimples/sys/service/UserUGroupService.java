@@ -1,19 +1,10 @@
 package com.dimples.sys.service;
 
-import com.dimples.sys.po.UserUGroup;
-
+/**
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2020/1/6
+ */
 public interface UserUGroupService {
-
-
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(UserUGroup record);
-
-    UserUGroup selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(UserUGroup record);
-
-    int updateByPrimaryKey(UserUGroup record);
 
 }
 
