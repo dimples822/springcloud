@@ -10,12 +10,12 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.dimples.monitor.dmin</groupId>
-	<artifactId>dimples-monitor-admin</artifactId>
+	<groupId>com.dimples.monitor</groupId>
+	<artifactId>dimples-monitor</artifactId>
 
 	<properties>
 		<docker.image.prefix>dimples</docker.image.prefix>
-		<build.final.name>dimples-monitor-admin</build.final.name>
+		<build.final.name>dimples-monitor</build.final.name>
 	</properties>
 
 	<dependencies>

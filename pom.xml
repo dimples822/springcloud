@@ -8,7 +8,7 @@
 		<module>./dimples-auth</module>
 		<module>./dimples-zuul</module>
 		<module>./dimples-common</module>
-		<module>./dimples-monitor-admin</module>
+		<module>./dimples-monitor</module>
 		<module>dimples-sys</module>
 		<module>dimples-server</module>
 	</modules>
