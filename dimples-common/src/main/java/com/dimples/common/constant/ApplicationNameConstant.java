@@ -7,6 +7,7 @@ package com.dimples.common.constant;
 public class ApplicationNameConstant {
 
     public static final String SYS = "dimples-sys";
+
 }
 
 

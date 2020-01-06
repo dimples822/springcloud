@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 public class OpsLogAspect extends BaseAspectSupport {
 
-    private static final String LOG_CONTENT = "[类名]==>%s [方法]==>%s [参数]==>%s [IP]==>%s";
+    private static final String LOG_CONTENT = "[类名] ==>%s \n [方法] ==> %s \n [参数] ==> %s \n [IP] ==> %s ";
 
     @Pointcut(value = "@annotation(com.dimples.common.annotation.OpsLog)")
     public void opsLogAnnotation() {
@@ -42,7 +42,7 @@ public class OpsLogAspect extends BaseAspectSupport {
         try {
             handleLog(point);
         } catch (Exception e) {
-            throw new BizException("日志记录出错",e);
+            throw new BizException("日志记录出错", e);
         }
         return result;
     }
@@ -69,7 +69,7 @@ public class OpsLogAspect extends BaseAspectSupport {
         HttpServletRequest request = HttpContextUtil.getRequest();
         // 构建一些基础信息
         String content = buildContent(point, methodName, request);
-        log.info("执行的操作:{}, 类型:{}, 信息:{}", value, opsLogTypeName, content);
+        log.info("执行的操作:{}, 类型:{}, \n 信息:{}", value, opsLogTypeName, content);
     }
 
     /**

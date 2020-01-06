@@ -1,4 +1,4 @@
-package com.dimples.zuul.config;
+package com.dimples.zuul.configure;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
