@@ -14,7 +14,7 @@ import feign.RequestInterceptor;
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2020/1/2
  */
-public class Oauth2FeignConfig {
+public class AuthFeignConfigure {
 
     @Bean
     public RequestInterceptor oauth2FeignRequestInterceptor() {

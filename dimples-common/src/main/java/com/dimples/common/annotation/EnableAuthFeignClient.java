@@ -1,6 +1,6 @@
 package com.dimples.common.annotation;
 
-import com.dimples.common.configure.Oauth2FeignConfig;
+import com.dimples.common.configure.AuthFeignConfigure;
 
 import org.springframework.context.annotation.Import;
 
@@ -17,6 +17,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(Oauth2FeignConfig.class)
-public @interface EnableOauth2FeignClient {
+@Import(AuthFeignConfigure.class)
+public @interface EnableAuthFeignClient {
 }
