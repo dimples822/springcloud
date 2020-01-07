@@ -1,14 +1,15 @@
 package com.dimples.auth.service.impl;
 
 import com.dimples.auth.service.SysUserService;
+import com.dimples.common.dto.AuthUserDTO;
 import com.dimples.common.dto.MenuDTO;
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.dto.UserDTO;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,7 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (userResult == null) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
-        if (StringUtils.equals(UserDTO.STATUS_VALID.toString(),userResult.getStatus().toString())){
+        if (StringUtils.equals(UserDTO.STATUS_LOCK, userResult.getStatus().toString())) {
             accountNonLocked = false;
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -67,8 +68,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 }
             }
         }
-        return new User(userResult.getUsername(), userResult.getPassword(),
+        AuthUserDTO authUser = new AuthUserDTO(userResult.getUsername(), userResult.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
+        BeanUtils.copyProperties(userResult,authUser);
+        return authUser;
     }
 }
 
