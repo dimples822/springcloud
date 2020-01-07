@@ -1,9 +1,11 @@
 package com.dimples.zuul.filter;
 
 import com.dimples.common.constant.Constant;
+import com.dimples.common.utils.HttpContextUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
@@ -43,6 +45,9 @@ public class ZuulGatewayRequestFilter extends ZuulFilter {
         String serviceId = (String) ctx.get(FilterConstants.SERVICE_ID_KEY);
         HttpServletRequest request = ctx.getRequest();
         String host = request.getRemoteHost();
+        if (StringUtils.equals(host, HttpContextUtil.LOCAL_ADDRESS)) {
+            host = HttpContextUtil.LOOPBACK_ADDRESS;
+        }
         String method = request.getMethod();
         String uri = request.getRequestURI();
         log.info("请求URI：{}，HTTP Method：{}，请求IP：{}，ServerId：{}", uri, method, host, serviceId);

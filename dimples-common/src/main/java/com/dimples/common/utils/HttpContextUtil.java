@@ -30,8 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpContextUtil {
 
     private static final String UNKNOWN = "unknown";
-    private static final String LOOPBACK_ADDRESS = "127.0.0.1";
-    private static final String LOCAL_ADDRESS = "0:0:0:0:0:0:0:1";
+    public static final String LOOPBACK_ADDRESS = "127.0.0.1";
+    public static final String LOCAL_ADDRESS = "0:0:0:0:0:0:0:1";
 
     /**
      * 获取IP地址

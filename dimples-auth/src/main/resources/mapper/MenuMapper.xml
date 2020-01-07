@@ -26,6 +26,7 @@
 		from tb_menu tm
 			     join tb_menu_role tmr on tm.menu_id = tmr.menu_id
 		where tmr.role_id = #{roleId,jdbcType=INTEGER}
+		and tm.perms is not null
 	</select>
 
 </mapper>

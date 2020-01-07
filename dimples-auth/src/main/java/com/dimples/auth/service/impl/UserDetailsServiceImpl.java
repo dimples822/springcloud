@@ -5,6 +5,7 @@ import com.dimples.common.dto.MenuDTO;
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.dto.UserDTO;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -55,8 +56,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 List<MenuDTO> permissionByRoleId = sysUserService.findPermissionByRoleId(role.getRoleId());
                 if (!permissionByRoleId.isEmpty()) {
                     for (MenuDTO menu : permissionByRoleId) {
-                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPerms());
-                        grantedAuthorities.add(authority);
+                        if (StringUtils.isNotBlank(menu.getPerms())) {
+                            GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPerms());
+                            grantedAuthorities.add(authority);
+                        }
                     }
                 }
             }
