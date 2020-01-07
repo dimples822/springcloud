@@ -1,6 +1,6 @@
 package com.dimples.auth.service;
 
-import com.dimples.common.dto.PermissionDTO;
+import com.dimples.common.dto.MenuDTO;
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.dto.UserDTO;
 
@@ -28,13 +28,13 @@ public interface SysUserService {
      */
     List<RoleDTO> getRoleByUserId(Long userId);
 
+
     /**
-     * 根据角色id查询权限信息
+     * 根据角色id查询菜单信息
      *
      * @param roleId 角色id
      * @return 权限信息
      */
-    List<PermissionDTO> getRolePermission(Long roleId);
-
+    List<MenuDTO> findPermissionByRoleId(Long roleId);
 }
 

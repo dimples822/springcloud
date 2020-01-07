@@ -1,7 +1,7 @@
 package com.dimples.auth.service.impl;
 
 import com.dimples.auth.service.SysUserService;
-import com.dimples.common.dto.PermissionDTO;
+import com.dimples.common.dto.MenuDTO;
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.dto.UserDTO;
 
@@ -52,10 +52,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRoleName());
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
-                List<PermissionDTO> perResult = sysUserService.getRolePermission(role.getRoleId());
-                if (!perResult.isEmpty()) {
-                    for (PermissionDTO menu : perResult) {
-                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPermission());
+                List<MenuDTO> permissionByRoleId = sysUserService.findPermissionByRoleId(role.getRoleId());
+                if (!permissionByRoleId.isEmpty()) {
+                    for (MenuDTO menu : permissionByRoleId) {
+                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getPerms());
                         grantedAuthorities.add(authority);
                     }
                 }

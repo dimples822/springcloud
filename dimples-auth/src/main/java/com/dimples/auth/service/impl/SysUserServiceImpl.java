@@ -1,11 +1,11 @@
 package com.dimples.auth.service.impl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.dimples.auth.mapper.PermissionMapper;
+import com.dimples.auth.mapper.MenuMapper;
 import com.dimples.auth.mapper.RoleMapper;
 import com.dimples.auth.mapper.UserMapper;
 import com.dimples.auth.service.SysUserService;
-import com.dimples.common.dto.PermissionDTO;
+import com.dimples.common.dto.MenuDTO;
 import com.dimples.common.dto.RoleDTO;
 import com.dimples.common.dto.UserDTO;
 
@@ -28,7 +28,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Resource
     private RoleMapper roleMapper;
     @Resource
-    private PermissionMapper permissionMapper;
+    private MenuMapper menuMapper;
 
 
     @Override
@@ -42,7 +42,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<PermissionDTO> getRolePermission(Long roleId) {
-        return permissionMapper.getRolePermission(roleId);
+    public List<MenuDTO> findPermissionByRoleId(Long roleId) {
+        return menuMapper.findPermissionByRoleId(roleId);
     }
 }
