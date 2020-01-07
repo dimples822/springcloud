@@ -13,78 +13,7 @@
 		<!--@mbg.generated-->
 		role_id, role_name, create_date, modify_date
 	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-		<!--@mbg.generated-->
-		select
-		<include refid="Base_Column_List" />
-		from db_base_permission.tb_role
-		where role_id = #{roleId,jdbcType=BIGINT}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		<!--@mbg.generated-->
-		delete from db_base_permission.tb_role
-		where role_id = #{roleId,jdbcType=BIGINT}
-	</delete>
-	<insert id="insert" keyColumn="role_id" keyProperty="roleId"
-		parameterType="com.dimples.auth.po.Role" useGeneratedKeys="true">
-		<!--@mbg.generated-->
-		insert into db_base_permission.tb_role (role_name, create_date, modify_date
-		)
-		values (#{roleName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
-		#{modifyDate,jdbcType=TIMESTAMP}
-		)
-	</insert>
-	<insert id="insertSelective" keyColumn="role_id" keyProperty="roleId"
-		parameterType="com.dimples.auth.po.Role" useGeneratedKeys="true">
-		<!--@mbg.generated-->
-		insert into db_base_permission.tb_role
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="roleName != null">
-				role_name,
-			</if>
-			<if test="createDate != null">
-				create_date,
-			</if>
-			<if test="modifyDate != null">
-				modify_date,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="roleName != null">
-				#{roleName,jdbcType=VARCHAR},
-			</if>
-			<if test="createDate != null">
-				#{createDate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="modifyDate != null">
-				#{modifyDate,jdbcType=TIMESTAMP},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dimples.auth.po.Role">
-		<!--@mbg.generated-->
-		update db_base_permission.tb_role
-		<set>
-			<if test="roleName != null">
-				role_name = #{roleName,jdbcType=VARCHAR},
-			</if>
-			<if test="createDate != null">
-				create_date = #{createDate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="modifyDate != null">
-				modify_date = #{modifyDate,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		where role_id = #{roleId,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.dimples.auth.po.Role">
-		<!--@mbg.generated-->
-		update db_base_permission.tb_role
-		set role_name = #{roleName,jdbcType=VARCHAR},
-		create_date = #{createDate,jdbcType=TIMESTAMP},
-		modify_date = #{modifyDate,jdbcType=TIMESTAMP}
-		where role_id = #{roleId,jdbcType=BIGINT}
-	</update>
+
 	<select id="getRoleByUserId" resultType="com.dimples.common.dto.RoleDTO">
 		select tr.role_id, role_name, create_date, modify_date from tb_role tr
 		join tb_role_user tru on tru.role_id = tr.role_id
