@@ -65,9 +65,9 @@ public class UserDTO implements Serializable {
 
     private Byte status;
 
-    private Date createTime;
+    private Date createDate;
 
-    private Date updateTime;
+    private Date modifyDate;
 
 }
 
