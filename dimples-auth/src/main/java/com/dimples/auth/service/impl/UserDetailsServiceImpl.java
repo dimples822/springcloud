@@ -33,11 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDTO userResult = sysUserService.findByUsername(username);
-        if (userResult == null) {
-            throw new UsernameNotFoundException("用户:" + username + ",不存在!");
-        }
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         // 可用性 :true:可用 false:不可用
         final boolean enabled = true;
         // 过期性 :true:没过期 false:过期
@@ -45,7 +40,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 有效性 :true:凭证有效 false:凭证无效
         final boolean credentialsNonExpired = true;
         // 锁定性 :true:未锁定 false:已锁定
-        final boolean accountNonLocked = true;
+        boolean accountNonLocked = true;
+        UserDTO userResult = sysUserService.findByUsername(username);
+        if (userResult == null) {
+            throw new UsernameNotFoundException("用户:" + username + ",不存在!");
+        }
+        if (StringUtils.equals(UserDTO.STATUS_VALID.toString(),userResult.getStatus().toString())){
+            accountNonLocked = false;
+        }
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         List<RoleDTO> roleResult = sysUserService.getRoleByUserId(userResult.getUserId());
         if (!roleResult.isEmpty()) {
             for (RoleDTO role : roleResult) {

@@ -16,7 +16,9 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO implements Serializable {
+
     private static final long serialVersionUID = 3881610071550902762L;
+    public static final Byte STATUS_VALID = '0';
 
     private Long userId;
 
