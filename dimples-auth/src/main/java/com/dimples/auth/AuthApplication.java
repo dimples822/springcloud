@@ -1,6 +1,7 @@
 package com.dimples.auth;
 
 import com.dimples.common.annotation.EnableAuthExceptionHandler;
+import com.dimples.common.annotation.EnableDimplesLettuceRedis;
 import com.dimples.common.annotation.EnableServerProtect;
 
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @EnableAuthExceptionHandler
 @EnableServerProtect
+@EnableDimplesLettuceRedis
 @SpringBootApplication
 @EnableDiscoveryClient
 @Slf4j

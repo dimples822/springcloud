@@ -1,7 +1,5 @@
 package com.dimples.sys.po;
 
-import com.dimples.common.dto.UserDTO;
-
 import java.util.Date;
 
 import lombok.Data;
@@ -48,16 +46,6 @@ public class User {
      */
     private Date modifyDate;
 
-    public static UserDTO convert(User user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setPassword(user.getPassword());
-        userDTO.setStatus(user.getStatus());
-        userDTO.setCreateTime(user.getCreateDate());
-        userDTO.setUpdateTime(user.getModifyDate());
-        return userDTO;
-    }
 }
 
 
