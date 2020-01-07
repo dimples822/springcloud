@@ -11,10 +11,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 /**
-  *
-  * @author zhongyj <1126834403@qq.com><br/>
-  * @date 2019/11/14
-  */
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2019/11/14
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -30,4 +29,5 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> getRoleByUserId(Integer userId) {
         return roleMapper.getRoleByUserId(userId);
     }
+
 }
