@@ -7,8 +7,10 @@ import org.springframework.context.annotation.PropertySource;
 import lombok.Data;
 
 /**
- * @author MrBird
- */
+  *
+  * @author zhongyj <1126834403@qq.com><br/>
+  * @date 2020/1/8
+  */
 @Data
 @SpringBootConfiguration
 @PropertySource(value = {"classpath:dimples-auth.properties"})
