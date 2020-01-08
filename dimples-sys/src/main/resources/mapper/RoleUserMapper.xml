@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.RoleUserMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.RoleUser">
     <!--@mbg.generated-->
-    <!--@Table tb_role_user-->
+    <!--@Table db_base_permission.tb_role_user-->
     <id column="role_user_id" jdbcType="BIGINT" property="roleUserId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -12,15 +12,4 @@
     <!--@mbg.generated-->
     role_user_id, user_id, role_id
   </sql>
-
-	<insert id="bindUserAndRoles">
-		insert into tb_role_user(user_id, role_id)
-		values
-		<foreach collection="roles" index="index" item="item" separator=",">
-			(
-			#{userId,jdbcType=BIGINT},
-			#{item,jdbcType=BIGINT}
-			)
-		</foreach>
-	</insert>
 </mapper>

@@ -11,11 +11,10 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author zhongyj <1126834403@qq.com><br/>
- * @date 2019/12/6
+ * @date 2020/1/8
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-
     /**
      * 查找用户详细信息
      *
@@ -23,16 +22,5 @@ public interface UserMapper extends BaseMapper<User> {
      * @param user 用户对象，用于传递查询条件
      * @return IPage
      */
-    IPage<User> findUserDetailPage(@Param("page") Page<User> page, @Param("user") UserDTO user);
+    IPage<UserDTO> findUserDetailPage(@Param("page") Page<UserDTO> page, @Param("user") UserDTO user);
 }
-
-
-
-
-
-
-
-
-
-
-

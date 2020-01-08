@@ -31,8 +31,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public IPage<User> findUserDetail(UserDTO user, RequestWithPageDTO request) {
-        Page<User> page = new Page<>(request.getPageNum(), request.getPageSize());
+    public IPage<UserDTO> findUserDetail(UserDTO user, RequestWithPageDTO request) {
+        Page<UserDTO> page = new Page<>(request.getPageNum(), request.getPageSize());
         return userMapper.findUserDetailPage(page, user);
     }
 
@@ -59,6 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     }
 }
+
 
 
 

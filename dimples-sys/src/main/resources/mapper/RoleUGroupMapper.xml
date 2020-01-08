@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.RoleUGroupMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.RoleUGroup">
     <!--@mbg.generated-->
-    <!--@Table tb_role_u_group-->
+    <!--@Table db_base_permission.tb_role_u_group-->
     <id column="role_u_group_id" jdbcType="BIGINT" property="roleUGroupId" />
     <result column="u_group_id" jdbcType="BIGINT" property="uGroupId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -12,5 +12,4 @@
     <!--@mbg.generated-->
     role_u_group_id, u_group_id, role_id
   </sql>
-
 </mapper>

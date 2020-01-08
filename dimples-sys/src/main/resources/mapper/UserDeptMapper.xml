@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.UserDeptMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.UserDept">
     <!--@mbg.generated-->
-    <!--@Table tb_user_dept-->
+    <!--@Table db_base_permission.tb_user_dept-->
     <id column="user_dept_id" jdbcType="BIGINT" property="userDeptId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="dept_id" jdbcType="BIGINT" property="deptId" />
@@ -12,5 +12,4 @@
     <!--@mbg.generated-->
     user_dept_id, user_id, dept_id
   </sql>
-
 </mapper>

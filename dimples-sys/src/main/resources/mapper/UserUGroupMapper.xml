@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.UserUGroupMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.UserUGroup">
     <!--@mbg.generated-->
-    <!--@Table tb_user_u_group-->
+    <!--@Table db_base_permission.tb_user_u_group-->
     <id column="user_u_group_id" jdbcType="BIGINT" property="userUGroupId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="u_group_id" jdbcType="BIGINT" property="uGroupId" />
@@ -12,5 +12,4 @@
     <!--@mbg.generated-->
     user_u_group_id, user_id, u_group_id
   </sql>
-
 </mapper>

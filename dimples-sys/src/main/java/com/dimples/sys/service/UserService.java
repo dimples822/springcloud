@@ -19,7 +19,7 @@ public interface UserService extends IService<User> {
      * @param user    用户对象，用于传递查询条件
      * @return IPage
      */
-    IPage<User> findUserDetail(UserDTO user, RequestWithPageDTO request);
+    IPage<UserDTO> findUserDetail(UserDTO user, RequestWithPageDTO request);
 
     /**
      * 新增用户
@@ -43,3 +43,4 @@ public interface UserService extends IService<User> {
     void deleteUsers(String[] userIds);
 
 }
+

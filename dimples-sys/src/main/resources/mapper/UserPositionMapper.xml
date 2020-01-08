@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.UserPositionMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.UserPosition">
     <!--@mbg.generated-->
-    <!--@Table tb_user_position-->
+    <!--@Table db_base_permission.tb_user_position-->
     <id column="user_position_id" jdbcType="BIGINT" property="userPositionId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="position_id" jdbcType="BIGINT" property="positionId" />
@@ -12,5 +12,4 @@
     <!--@mbg.generated-->
     user_position_id, user_id, position_id
   </sql>
-
 </mapper>

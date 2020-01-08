@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dimples.sys.mapper.PositionMapper">
-  <resultMap id="BaseResultMap" type="com.dimples.sys.po.Position">
+<mapper namespace="com.dimples.sys.mapper.UGroupMapper">
+  <resultMap id="BaseResultMap" type="com.dimples.sys.po.UGroup">
     <!--@mbg.generated-->
-    <!--@Table tb_position-->
-    <id column="position_id" jdbcType="BIGINT" property="positionId" />
-    <result column="position_name" jdbcType="VARCHAR" property="positionName" />
+    <!--@Table db_base_permission.tb_u_group-->
+    <id column="u_group_id" jdbcType="BIGINT" property="uGroupId" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    position_id, position_name, create_date, modify_date
+    u_group_id, group_name, create_date, modify_date
   </sql>
-
 </mapper>

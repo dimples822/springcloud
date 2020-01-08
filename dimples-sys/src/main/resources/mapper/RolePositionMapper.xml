@@ -3,7 +3,7 @@
 <mapper namespace="com.dimples.sys.mapper.RolePositionMapper">
   <resultMap id="BaseResultMap" type="com.dimples.sys.po.RolePosition">
     <!--@mbg.generated-->
-    <!--@Table tb_role_position-->
+    <!--@Table db_base_permission.tb_role_position-->
     <id column="role_position_id" jdbcType="BIGINT" property="rolePositionId" />
     <result column="position_id" jdbcType="BIGINT" property="positionId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -12,5 +12,4 @@
     <!--@mbg.generated-->
     role_position_id, position_id, role_id
   </sql>
-
 </mapper>

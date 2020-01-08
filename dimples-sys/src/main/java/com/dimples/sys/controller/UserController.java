@@ -31,7 +31,7 @@ public class UserController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('user:view')")
     public ResponseDTO userList(RequestWithPageDTO queryRequest, UserDTO user) {
-        IPage<User> userDetail = userService.findUserDetail(user, queryRequest);
+        IPage<UserDTO> userDetail = userService.findUserDetail(user, queryRequest);
         return ResponseDTO.success(userDetail);
     }
 

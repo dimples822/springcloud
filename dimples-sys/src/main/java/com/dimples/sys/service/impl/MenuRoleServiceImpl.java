@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dimples.sys.mapper.MenuRoleMapper;
 import com.dimples.sys.po.MenuRole;
 import com.dimples.sys.service.MenuRoleService;
+
 @Service
-public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> implements MenuRoleService{
+public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> implements MenuRoleService {
 
 }
+
