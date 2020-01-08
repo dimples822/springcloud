@@ -85,6 +85,9 @@ public class UserDTO implements Serializable {
     @TableField(exist = false)
     private String modifyDate;
 
+    @TableField(exist = false)
+    private String roleId;
+
 }
 
 

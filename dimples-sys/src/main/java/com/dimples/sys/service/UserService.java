@@ -26,14 +26,14 @@ public interface UserService extends IService<User> {
      *
      * @param user user
      */
-    void createUser(User user);
+    void createUser(UserDTO user);
 
     /**
      * 修改用户
      *
      * @param user user
      */
-    void updateUser(User user);
+    void updateUser(UserDTO user);
 
     /**
      * 删除用户

@@ -1,34 +1,32 @@
 package com.dimples.sys.service.impl;
 
-import com.dimples.common.eunm.CodeAndMessageEnum;
-import com.dimples.common.exception.BizException;
-import com.dimples.common.utils.SysConstant;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dimples.sys.mapper.RoleUserMapper;
+import com.dimples.sys.po.RoleUser;
 import com.dimples.sys.service.RoleUserService;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
-import java.util.List;
 
-import javax.annotation.Resource;
-
+/**
+ * @author zhongyj <1126834403@qq.com><br/>
+ * @date 2020/1/8
+ */
 @Service
-public class RoleUserServiceImpl implements RoleUserService {
-
-    @Resource
-    private RoleUserMapper roleUserMapper;
+public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> implements RoleUserService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int bingUserAndRole(Long userId, String roleIds) {
-        String[] params = roleIds.split(SysConstant.PRAMS_SEPARATOR);
-        if (params.length == 0 || userId == null) {
-            throw new BizException(CodeAndMessageEnum.REQUEST_INVALIDATE);
-        }
-        List<String> roles = Arrays.asList(params);
-        return roleUserMapper.bindUserAndRoles(userId, roles);
+    public void deleteUserRolesByRoleId(String[] roleIds) {
+        Arrays.stream(roleIds).forEach(id -> baseMapper.deleteByRoleId(Long.valueOf(id)));
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteUserRolesByUserId(String[] userIds) {
+        Arrays.stream(userIds).forEach(id -> baseMapper.deleteByUserId(Long.valueOf(id)));
     }
 }
 
