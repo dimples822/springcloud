@@ -35,9 +35,9 @@ public class AuthUserDTO extends User {
 
     private Byte status;
 
-    private Date createDate;
+    private String createDate;
 
-    private Date modifyDate;
+    private String modifyDate;
 
 
     public AuthUserDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {

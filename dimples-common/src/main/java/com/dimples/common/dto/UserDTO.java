@@ -33,7 +33,7 @@ public class UserDTO implements Serializable {
     /**
      * 默认密码
      */
-    public static final String DEFAULT_PASSWORD = "1234qwer";
+    public static final String DEFAULT_PASSWORD = "123456";
     /**
      * 性别男
      */
@@ -65,9 +65,9 @@ public class UserDTO implements Serializable {
 
     private Byte status;
 
-    private Date createDate;
+    private String createDate;
 
-    private Date modifyDate;
+    private String modifyDate;
 
 }
 

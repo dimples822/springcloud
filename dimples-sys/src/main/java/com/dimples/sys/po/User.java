@@ -27,11 +27,6 @@ public class User {
     private String password;
 
     /**
-     * 盐
-     */
-    private String salt;
-
-    /**
      * 用户状态，0不启用，1启用，默认为1
      */
     private Byte status;
