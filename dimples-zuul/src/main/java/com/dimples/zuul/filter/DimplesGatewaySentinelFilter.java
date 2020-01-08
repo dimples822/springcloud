@@ -8,9 +8,11 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionM
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
+import com.alibaba.csp.sentinel.adapter.gateway.zuul.fallback.ZuulBlockFallbackManager;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulErrorFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPostFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPreFilter;
+import com.dimples.zuul.fallback.DimplesGatewayBlockFallbackProvider;
 import com.google.common.collect.Sets;
 import com.netflix.zuul.ZuulFilter;
 
@@ -54,6 +56,7 @@ public class DimplesGatewaySentinelFilter {
      */
     @PostConstruct
     public void doInit() {
+        ZuulBlockFallbackManager.registerProvider(new DimplesGatewayBlockFallbackProvider());
         initGatewayRules();
     }
 
