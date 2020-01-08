@@ -12,6 +12,10 @@ import com.dimples.sys.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 /**
@@ -34,7 +38,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void createUser(User user) {
-
+        user.setCreateDate(new Date());
+        user.setStatus(Byte.valueOf(UserDTO.STATUS_VALID));
+        user.setPassword(passwordEncoder.encode(UserDTO.DEFAULT_PASSWORD));
+        // 新增用户
+        save(user);
     }
 
     @Override
@@ -44,6 +52,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void deleteUsers(String[] userIds) {
+        List<String> list = Arrays.asList(userIds);
+        // 删除用户
+        removeByIds(list);
+        // 删除用户角色
 
     }
 }

@@ -1,5 +1,9 @@
 package com.dimples.common.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -14,6 +18,7 @@ import lombok.Data;
  * @date 2019/12/5
  */
 @Data
+@TableName("tb_user")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO implements Serializable {
 
@@ -47,26 +52,37 @@ public class UserDTO implements Serializable {
      */
     public static final String SEX_UNKNOWN = "2";
 
+    @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
+    @TableField("username")
     private String username;
 
+    @TableField("password")
     private String password;
 
+    @TableField("name")
     private String name;
 
+    @TableField(exist = false)
     private Date birthday;
 
+    @TableField(exist = false)
     private Integer sex;
 
+    @TableField(exist = false)
     private String email;
 
+    @TableField(exist = false)
     private String phone;
 
+    @TableField("status")
     private Byte status;
 
+    @TableField(exist = false)
     private String createDate;
 
+    @TableField(exist = false)
     private String modifyDate;
 
 }

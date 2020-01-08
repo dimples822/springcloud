@@ -1,4 +1,4 @@
-package com.dimples.sys.controller.auth;
+package com.dimples.sys.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class SysAuthController {
         return "dimples-sys";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/auth/user")
     public Principal currentUser(Principal principal) {
         return principal;
     }
