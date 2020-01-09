@@ -1,7 +1,12 @@
 package com.dimples.sys.configure;
 
+import com.dimples.sys.properties.DimplesSwaggerProperties;
+import com.dimples.sys.properties.DimplesSystemProperties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -21,28 +26,33 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Slf4j
 @Configuration
 @EnableSwagger2
-public class Swagger2Config {
+public class DimplesSysSwagger2Config {
+
+    @Resource
+    private DimplesSystemProperties properties;
 
     @Bean
     public Docket createRestApi() {
         log.info("==================== 开启Swagger2配置 ====================");
         log.info("=============== 访问网址：IP:Port/doc.html ================");
+        DimplesSwaggerProperties swagger = properties.getDimplesSwaggerProperties();
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .apiInfo(apiInfo(swagger))
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo apiInfo() {
-        Contact contact = new Contact("Dimples微服务项目", "http://139.9.220.139:8088", "1126834403@qq.com");
+    private ApiInfo apiInfo(DimplesSwaggerProperties swagger) {
+        Contact contact = new Contact(swagger.getAuthor(), swagger.getUrl(), swagger.getEmail());
         return new ApiInfoBuilder()
-                .title("springboot利用swagger2构建api文档")
-                .description("Dimples微服务项目")
-                .termsOfServiceUrl("127.0.0.1")
+                .title(swagger.getTitle())
+                .description(swagger.getDescription())
                 .contact(contact)
-                .version("1.0")
+                .version(swagger.getVersion())
+                .license(swagger.getLicense())
+                .licenseUrl(swagger.getLicenseUrl())
                 .build();
     }
 

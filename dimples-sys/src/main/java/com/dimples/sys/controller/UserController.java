@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,11 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 @Validated
 @RestController
 @RequestMapping("user")
+@Api(tags = "用户管理")
 public class UserController {
 
     @Resource
     private UserService userService;
 
+    @ApiOperation(value = "查询用户详细信息", notes = "查询用户的详细信息,返回List用户集合")
     @GetMapping
     @PreAuthorize("hasAnyAuthority('user:view')")
     public ResponseDTO userList(RequestWithPageDTO queryRequest, UserDTO user) {
@@ -39,6 +43,7 @@ public class UserController {
         return ResponseDTO.success(userDetail);
     }
 
+    @ApiOperation(value = "新增一个用户", notes = "同时传入一个以,分割的roleId的字符串用来为用户绑定角色信息")
     @PostMapping
     @PreAuthorize("hasAnyAuthority('user:add')")
     public void addUser(@Valid UserDTO user) throws BizException {
