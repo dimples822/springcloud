@@ -1,5 +1,6 @@
 package com.dimples.auth.configure;
 
+import com.dimples.auth.filter.VerifyFilter;
 import com.dimples.auth.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
     @Resource
     private PasswordEncoder passwordEncoder;
-
+    @Resource
+    private VerifyFilter verifyFilter;
 
 
     /**
@@ -59,7 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/oauth/**")
+        http
+                //.addFilterBefore(verifyFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers().antMatchers("/oauth/**")
                 .and()
                 .authorizeRequests().antMatchers("/oauth/**").authenticated()
                 .and()
