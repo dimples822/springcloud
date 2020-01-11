@@ -20,6 +20,9 @@ public class DimplesSwaggerProperties {
     private String email;
     private String license;
     private String licenseUrl;
+    private String tokenUrl;
+    private String name;
+    private String scope;
 
 }
 
