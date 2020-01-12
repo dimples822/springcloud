@@ -21,7 +21,7 @@ public class DimplesSystemProperties {
      */
     private String anonUrl;
 
-    private DimplesSwaggerProperties dimplesSwaggerProperties = new DimplesSwaggerProperties();
+    private DimplesSwaggerProperties swagger = new DimplesSwaggerProperties();
 
 }
 

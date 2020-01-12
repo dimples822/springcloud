@@ -45,13 +45,13 @@ public class DimplesSysSwagger2Config {
     public Docket createRestApi() {
         log.info("==================== 开启Swagger2配置 ====================");
         log.info("=============== 访问网址：IP:Port/doc.html ================");
-        DimplesSwaggerProperties swagger = properties.getDimplesSwaggerProperties();
+        DimplesSwaggerProperties swagger = properties.getSwagger();
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo(swagger))
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
+                .apiInfo(apiInfo(swagger))
                 .securitySchemes(Collections.singletonList(securityScheme(swagger)))
                 .securityContexts(Collections.singletonList(securityContext(swagger)));
     }
