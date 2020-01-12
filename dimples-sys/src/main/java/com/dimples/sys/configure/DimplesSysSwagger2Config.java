@@ -2,26 +2,24 @@ package com.dimples.sys.configure;
 
 import com.dimples.sys.properties.DimplesSwaggerProperties;
 import com.dimples.sys.properties.DimplesSystemProperties;
+import com.google.common.collect.Lists;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.GrantType;
-import springfox.documentation.service.ResourceOwnerPasswordCredentialsGrant;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
@@ -52,8 +50,8 @@ public class DimplesSysSwagger2Config {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo(swagger))
-                .securitySchemes(Collections.singletonList(securityScheme(swagger)))
-                .securityContexts(Collections.singletonList(securityContext(swagger)));
+                .securityContexts(Lists.newArrayList(securityContext()))
+                .securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
     }
 
     private ApiInfo apiInfo(DimplesSwaggerProperties swagger) {
@@ -68,27 +66,22 @@ public class DimplesSysSwagger2Config {
                 .build();
     }
 
-    private SecurityScheme securityScheme(DimplesSwaggerProperties swagger) {
-        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(swagger.getTokenUrl());
-
-        return new OAuthBuilder()
-                .name(swagger.getName())
-                .grantTypes(Collections.singletonList(grantType))
-                .scopes(Arrays.asList(scopes(swagger)))
-                .build();
+    private ApiKey apiKey() {
+        return new ApiKey("BearerToken", "Authorization", "header");
     }
 
-    private SecurityContext securityContext(DimplesSwaggerProperties swagger) {
+    private SecurityContext securityContext() {
         return SecurityContext.builder()
-                .securityReferences(Collections.singletonList(new SecurityReference(swagger.getName(), scopes(swagger))))
-                .forPaths(PathSelectors.any())
+                .securityReferences(defaultAuth())
+                .forPaths(PathSelectors.regex("/.*"))
                 .build();
     }
 
-    private AuthorizationScope[] scopes(DimplesSwaggerProperties swagger) {
-        return new AuthorizationScope[]{
-                new AuthorizationScope(swagger.getScope(), "")
-        };
+    List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return Lists.newArrayList(new SecurityReference("BearerToken", authorizationScopes));
     }
 
 }

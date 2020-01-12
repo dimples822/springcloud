@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import lombok.Data;
 
@@ -65,7 +64,7 @@ public class UserDTO implements Serializable {
     private String name;
 
     @TableField(exist = false)
-    private Date birthday;
+    private String birthday;
 
     @TableField(exist = false)
     private Integer sex;
