@@ -35,6 +35,7 @@ public class TestResourceServerConfigure extends ResourceServerConfigurerAdapter
                 .requestMatchers().antMatchers("/**")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 
