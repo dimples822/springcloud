@@ -22,7 +22,9 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_UNAUTHORIZED, ResponseDTO.failed(CodeAndMessageEnum.AUTH_DISABLE));
+        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE,
+                HttpServletResponse.SC_UNAUTHORIZED,
+                ResponseDTO.failed(CodeAndMessageEnum.AUTH_DISABLE));
     }
 
 }

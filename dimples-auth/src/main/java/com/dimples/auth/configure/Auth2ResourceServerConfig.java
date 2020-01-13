@@ -17,6 +17,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 资源服务器
  * 认证中心会提供User信息，注销当前Token等，所以也是资源服务器
@@ -24,6 +26,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
  * @author zhongyj <1126834403@qq.com><br/>
  * @date 2019/12/5
  */
+@Slf4j
 @Configuration
 @EnableResourceServer
 public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
@@ -50,6 +53,7 @@ public class Auth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(authProperties.getAnonUrl(), ",");
+        log.info("============ Auth模块资源服务器免认证配置：{}", (Object) anonUrls);
         http.csrf().disable()
                 .requestMatchers().antMatchers(SECURITY_ALL_UTL)
                 .and()

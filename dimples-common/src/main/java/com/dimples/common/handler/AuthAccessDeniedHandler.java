@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_FORBIDDEN, ResponseDTO.failed(CodeAndMessageEnum.NOT_AUTH));
+        ResponseDTO.makeResponse(response, MediaType.APPLICATION_JSON_VALUE,
+                HttpServletResponse.SC_FORBIDDEN,
+                ResponseDTO.failed(CodeAndMessageEnum.NOT_AUTH));
     }
 }
 
