@@ -40,6 +40,11 @@ import javax.annotation.Resource;
 @EnableAuthorizationServer
 public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    public static final String DEFAULT_SELECT = "select client_id, " + "client_secret, " + "resource_ids, scope, "
+            + "authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, "
+            + "refresh_token_validity, additional_information, autoapprove"
+            + " from oauth_client_details" + " where client_id = ?";
+
     @Resource
     private AuthenticationManager authenticationManager;
     @Resource
@@ -73,6 +78,7 @@ public class Auth2AuthorizationServerConfig extends AuthorizationServerConfigure
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        redisClientDetailsService.setSelectClientDetailsSql(DEFAULT_SELECT);
         clients.withClientDetails(redisClientDetailsService);
     }
 
